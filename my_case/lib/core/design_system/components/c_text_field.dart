@@ -8,13 +8,14 @@ class CustomTextField extends StatelessWidget {
   final double? horizontalPadding;
   final bool? isPassword;
   final TextEditingController controller;
-  const CustomTextField(
-      {super.key,
-      this.title,
-      this.horizontalPadding,
-      this.hintText,
-      this.isPassword,
-      required this.controller});
+  const CustomTextField({
+    super.key,
+    this.title,
+    this.horizontalPadding,
+    this.hintText,
+    this.isPassword,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
