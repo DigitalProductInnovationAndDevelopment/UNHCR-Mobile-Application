@@ -13,7 +13,7 @@ class CColors {
   static const Color black = Color(0xff251952);
   static const Color grey = Color(0xffE8E8E8);
   static const Color darkGrey = Color(0xffC7C7C7);
-  static const Color white = Color(0xffFFFFFF);
+  static const Color white = Color(0xffF5F5F5);
 
   static const Color error = Color(0xffDA5684);
   static const Color warning = Color(0xffFFAD4E);
@@ -23,7 +23,7 @@ class CColors {
 
   static const Color darkLigth = Color(0xff41356C);
 
-  static const Color primaryColor = Color(0xff7b57fc);
+  static const Color primaryColor = Color(0xff187bbc);
   static const Color secondaryColor = Colors.black;
   static const Color backgroundPrimaryColor = Color(0xfff7f7f8);
 }

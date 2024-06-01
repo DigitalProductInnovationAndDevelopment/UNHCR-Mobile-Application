@@ -3,10 +3,10 @@ import 'c_colors.dart';
 
 class CustomBorderStyles {
   static OutlineInputBorder primaryBorder = OutlineInputBorder(
-    borderSide: const BorderSide(
-      color: CColors.grey,
+    borderSide: BorderSide(
+      color: CColors.primaryColor.withOpacity(0.5),
       width: 1,
     ),
-    borderRadius: BorderRadius.circular(30),
+    borderRadius: BorderRadius.circular(16),
   );
 }

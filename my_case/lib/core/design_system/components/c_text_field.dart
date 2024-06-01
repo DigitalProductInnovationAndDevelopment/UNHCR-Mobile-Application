@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:my_case/core/design_system/theme/c_border_styles.dart';
 import 'package:my_case/core/design_system/theme/c_colors.dart';
 
-class CustomTextField extends StatelessWidget {
+class CTextField extends StatelessWidget {
   final String? title;
   final String? hintText;
   final double? horizontalPadding;
   final bool? isPassword;
   final TextEditingController controller;
-  const CustomTextField({
+  const CTextField({
     super.key,
     this.title,
     this.horizontalPadding,
@@ -24,14 +24,16 @@ class CustomTextField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title ?? '',
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              title ?? '',
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
-          const SizedBox(height: 15),
           TextField(
             obscureText: isPassword ?? false,
             controller: controller,
