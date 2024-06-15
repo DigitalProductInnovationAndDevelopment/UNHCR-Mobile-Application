@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_case/core/design_system/components/c_app_bar.dart';
+import 'package:my_case/core/design_system/components/c_logo.dart';
+import 'package:my_case/features/home/home_screen.dart';
+import 'package:my_case/features/messages/messages_screen.dart';
+import 'package:my_case/features/profile/profile_screen.dart';
+import 'package:my_case/features/requests/requests_screen.dart';
 import 'package:my_case/features/view/navigation_bar_notifier.dart';
 import 'package:my_case/features/view/widgets/c_bottom_navigation_bar.dart';
 import 'package:my_case/core/design_system/components/c_scaffold.dart';
@@ -10,13 +15,23 @@ class ViewScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(navigationBarProvider);
+    final _screens = [
+      const HomeScreen(),
+      const RequestsScreen(),
+      const MessagesScreen(),
+      const ProfileScreen(),
+    ];
 
-    return const CScaffold(
-      appBar: CAppBar(),
-      body: Center(
-        child: Text("Home Screen"),
+    final navbarIndexProvider = ref.watch(navigationBarProvider);
+
+    return CScaffold(
+      appBar: CAppBar(
+        leading: CLogo(
+          size: 70,
+          logoType: LogoType.withoutText,
+        ),
       ),
+      body: _screens[navbarIndexProvider],
       bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }

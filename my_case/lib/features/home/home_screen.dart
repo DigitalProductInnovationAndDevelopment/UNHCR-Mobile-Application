@@ -5,10 +5,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        Text("Home Screen"),
-      ],
-    );
+    return const Placeholder();
   }
 }

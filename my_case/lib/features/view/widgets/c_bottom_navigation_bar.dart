@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_case/features/home/navigation_bar_notifier.dart';
+import 'package:my_case/core/design_system/theme/c_colors.dart';
+import 'package:my_case/features/view/navigation_bar_notifier.dart';
 
 class CustomBottomNavigationBar extends ConsumerStatefulWidget {
   const CustomBottomNavigationBar({super.key});
@@ -36,8 +37,8 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
           height: 120,
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: Theme.of(context).colorScheme.onSecondaryContainer,
-            unselectedItemColor: Theme.of(context).colorScheme.onBackground,
+            selectedItemColor: CColors.primaryColor,
+            unselectedItemColor: CColors.black,
             unselectedLabelStyle: TextStyle(
               color: Theme.of(context).colorScheme.onSurface,
             ),
@@ -50,7 +51,7 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
               BottomNavigationBarItem(
                 icon: Padding(
                   padding: EdgeInsets.only(bottom: 5),
-                  child: Icon(Icons.request_page, size: 30),
+                  child: Icon(Icons.document_scanner, size: 30),
                 ),
                 label: "Requests",
               ),

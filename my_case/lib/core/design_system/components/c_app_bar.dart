@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 
 class CAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CAppBar({
-    super.key,
-    this.title = "",
-    this.height = 50,
-    this.backgroundColor = Colors.transparent,
-    this.elevation = 0,
-    this.leadingColor = Colors.black,
-  });
-
-  final String title;
   final double height;
   final Color? backgroundColor;
   final double elevation;
   final Color? leadingColor;
+  final Widget? title;
+  final Widget? leading;
+
+  const CAppBar({
+    super.key,
+    this.height = 60,
+    this.backgroundColor = Colors.transparent,
+    this.elevation = 0,
+    this.leadingColor = Colors.black,
+    this.title,
+    this.leading,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +24,15 @@ class CAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: backgroundColor,
       elevation: elevation,
       automaticallyImplyLeading: true,
-      title: Text(
-        title,
-        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-              color: Theme.of(context).colorScheme.onBackground,
-            ),
+      centerTitle: true,
+      scrolledUnderElevation: 0,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          title ?? Container(),
+          Spacer(),
+          leading ?? Container(),
+        ],
       ),
     );
   }
