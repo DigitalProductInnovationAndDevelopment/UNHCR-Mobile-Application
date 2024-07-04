@@ -17,27 +17,27 @@ class ProfileEditSectionWidget extends StatelessWidget {
               SettingsTile.navigation(
                 leading: Icon(Icons.person),
                 title: Text('Name'),
-                value: Text('John'),
+                value: Text('Ali'),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.person),
                 title: Text('Surname'),
-                value: Text('Doe'),
+                value: Text('Mohammed'),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.cake),
                 title: Text('Date of Birth'),
-                value: Text('01.01.1990'),
+                value: Text('02.04.1990'),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.location_on),
                 title: Text('Location'),
-                value: Text('New York, USA'),
+                value: Text('Adana, Turkey'),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.family_restroom),
                 title: Text('Household Size'),
-                value: Text('5'),
+                value: Text('8'),
               ),
             ],
           ),
@@ -47,7 +47,7 @@ class ProfileEditSectionWidget extends StatelessWidget {
               SettingsTile(
                 leading: Icon(Icons.email),
                 title: Text('Email'),
-                value: Text('johndoe@gmail.com'),
+                value: Text('mo@hotmail.com'),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.phone),
@@ -62,12 +62,12 @@ class ProfileEditSectionWidget extends StatelessWidget {
               SettingsTile(
                 leading: Icon(Icons.confirmation_number),
                 title: Text('UNHCR Case Number'),
-                value: Text('1234567890'),
+                value: Text('385-23C00891'),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.confirmation_number),
                 title: Text('CoA ID Number'),
-                value: Text('1234567890'),
+                value: Text('99123456789'),
               ),
             ],
           ),

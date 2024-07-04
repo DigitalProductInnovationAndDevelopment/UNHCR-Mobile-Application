@@ -24,6 +24,6 @@ class CColors {
   static const Color darkLigth = Color(0xff41356C);
 
   static const Color primaryColor = Color(0xff187bbc);
-  static const Color secondaryColor = Colors.black;
+  static const Color secondaryColor = Color(0xffCED4DA);
   static const Color backgroundPrimaryColor = Color(0xfff7f7f8);
 }

@@ -15,7 +15,9 @@ class ChatScreen extends ConsumerWidget {
 
     return chatProvider.when(
       data: (data) => Scaffold(
-        appBar: CAppBar(),
+        appBar: CAppBar(
+          backgroundColor: CColors.grey,
+        ),
         body: Chat(
           messages: data.messages,
           typingIndicatorOptions: TypingIndicatorOptions(
@@ -31,9 +33,9 @@ class ChatScreen extends ConsumerWidget {
             return "";
           },
           theme: DefaultChatTheme(
-            backgroundColor: CColors.white,
+            backgroundColor: CColors.grey,
             primaryColor: CColors.primaryColor,
-            inputBackgroundColor: CColors.secondaryColor,
+            inputBackgroundColor: CColors.primaryColor,
             sendButtonIcon: Icon(
               Icons.send,
               color: Colors.white,

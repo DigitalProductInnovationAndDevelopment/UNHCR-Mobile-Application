@@ -15,7 +15,7 @@ class ProfileImageWidget extends StatelessWidget {
       backgroundColor: CColors.primaryColor,
       child: CircleAvatar(
         radius: radius,
-        backgroundImage: NetworkImage("https://thispersondoesnotexist.com/"),
+        backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/71.jpg"),
       ),
     );
   }

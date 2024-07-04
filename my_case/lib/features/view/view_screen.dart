@@ -18,7 +18,7 @@ class ViewScreen extends ConsumerWidget {
     final _screens = [
       const HomeScreen(),
       const RequestsScreen(),
-      const MessagesScreen(),
+      // const MessagesScreen(),
       const ProfileScreen(),
     ];
 

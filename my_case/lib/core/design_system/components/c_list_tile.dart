@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CListTile extends StatelessWidget {
-  final String? title;
-  final String? subtitle;
+  final Widget? title;
+  final Widget? subtitle;
   final Widget? leading;
   final Widget? trailing;
   const CListTile({
@@ -16,16 +16,12 @@ class CListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: title != null ? Text(title!) : null,
-      subtitle: subtitle != null ? Text(subtitle!) : null,
+      title: title,
+      subtitle: subtitle,
       leading: leading,
       trailing: trailing,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
-        side: BorderSide(
-          color: Colors.grey.shade300,
-          width: 2,
-        ),
       ),
     );
   }
