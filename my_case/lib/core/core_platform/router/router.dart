@@ -7,6 +7,6 @@ import 'routes.dart';
 final goRouterProvider = Provider<GoRouter>((ref) => routerConfig);
 
 final GoRouter routerConfig = GoRouter(
-  initialLocation: NavigationEnums.viewScreen.routeName,
+  initialLocation: NavigationEnums.signInScreen.routeName,
   routes: goRouterRoutes,
 );

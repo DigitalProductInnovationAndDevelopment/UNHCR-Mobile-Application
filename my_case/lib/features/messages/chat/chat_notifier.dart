@@ -16,7 +16,19 @@ class ChatNotifier extends AutoDisposeAsyncNotifier<ChatUIModel> {
 
     return ChatUIModel(
       user: user,
-      messages: [],
+      messages: [
+        types.TextMessage(
+          text:
+              """Hi John! Regarding the request you submitted, we are currently working on it. Could you please provide us with more details?""",
+          author: types.User(
+            id: '2',
+            imageUrl: "https://thispersondoesnotexist.com/",
+            firstName: "Jane",
+            lastName: "Doe",
+          ),
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+        ),
+      ],
     );
   }
 
@@ -40,7 +52,7 @@ class ChatNotifier extends AutoDisposeAsyncNotifier<ChatUIModel> {
 
     await update((p0) {
       final message = types.TextMessage(
-        text: "Hello, John!",
+        text: "Thank you for your message! We will get back to you soon.",
         author: types.User(
           id: '2',
           imageUrl: "https://thispersondoesnotexist.com/",

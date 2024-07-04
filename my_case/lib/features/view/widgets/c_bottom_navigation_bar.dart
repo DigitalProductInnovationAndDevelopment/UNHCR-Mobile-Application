@@ -55,10 +55,10 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                 ),
                 label: "Requests",
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.message, size: 35),
-                label: "Messages",
-              ),
+              // BottomNavigationBarItem(
+              //   icon: Icon(Icons.message, size: 35),
+              //   label: "Messages",
+              // ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person, size: 35),
                 label: "Profile",

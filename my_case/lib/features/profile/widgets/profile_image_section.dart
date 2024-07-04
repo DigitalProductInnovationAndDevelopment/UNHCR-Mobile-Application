@@ -19,11 +19,11 @@ class ProfileImageSectionWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "John Doe",
+              "Ali Mohammed",
               style: context.text20Bold,
             ),
             Text(
-              "Derik, SY",
+              "Adana, Turkey",
               style: context.text16,
             ),
           ],

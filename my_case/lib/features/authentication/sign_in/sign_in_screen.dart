@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/core/design_system/components/c_app_bar.dart';
@@ -58,7 +59,12 @@ class _SignInScreenState extends State<SignInScreen> {
             const SizedBox(height: 32),
             CButton(
               text: "Sign In",
-              onTap: () {},
+              onTap: () async {
+                EasyLoading.show();
+                await Future.delayed(const Duration(milliseconds: 500));
+                EasyLoading.dismiss();
+                GoRouter.of(context).go(NavigationEnums.viewScreen.routeName);
+              },
             ),
             const SizedBox(height: 16),
             StyledText(
