@@ -82,6 +82,22 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   return;
                 }
 
+                final email = _emailController.text;
+                final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                if (!emailRegex.hasMatch(email)) {
+                  EasyLoading.showError("Please enter a valid email address");
+                  return;
+                }
+
+                if (_nameController.text.isEmpty ||
+                    _surnameController.text.isEmpty ||
+                    _emailController.text.isEmpty ||
+                    _passwordController.text.isEmpty ||
+                    _verifyPasswordController.text.isEmpty) {
+                  EasyLoading.showError("Please fill all fields");
+                  return;
+                }
+
                 GoRouter.of(context).push(
                   NavigationEnums.signUpScreenStep2.routeName,
                   extra: SignUpUiModel(

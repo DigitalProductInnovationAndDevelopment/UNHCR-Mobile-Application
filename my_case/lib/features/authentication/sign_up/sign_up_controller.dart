@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/data/repositories/auth_repository.dart';
+import 'package:my_case/features/authentication/sign_up/sign_up_ui_model.dart';
 
 final signUpControllerProvider = Provider<SignUpController>((ref) {
   return SignUpController(ref);
@@ -16,20 +17,21 @@ class SignUpController {
 
   Future<void> signUp({
     required BuildContext context,
-    required String email,
-    required String password,
-    required String name,
-    required String surname,
+    required SignUpUiModel signUpUiModel,
   }) async {
     EasyLoading.show();
 
     try {
       await AuthRepository().signUp(
-        email: email,
-        password: password,
-        name: name,
-        surname: surname,
+        signUpUiModel: signUpUiModel,
       );
+
+      EasyLoading.showSuccess(
+        "Sign up successful",
+        duration: const Duration(seconds: 1),
+      );
+
+      GoRouter.of(context).go(NavigationEnums.viewScreen.routeName);
     } catch (e) {
       EasyLoading.showError(
         e.toString(),

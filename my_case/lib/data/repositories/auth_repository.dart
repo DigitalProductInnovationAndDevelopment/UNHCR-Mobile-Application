@@ -1,4 +1,5 @@
 import 'package:my_case/data/client/dio_client.dart';
+import 'package:my_case/features/authentication/sign_up/sign_up_ui_model.dart';
 
 class AuthRepository {
   static AuthRepository? _instance;
@@ -29,19 +30,24 @@ class AuthRepository {
   }
 
   Future<Map<String, dynamic>> signUp({
-    required String email,
-    required String password,
-    required String name,
-    required String surname,
+    SignUpUiModel? signUpUiModel,
   }) async {
     try {
       final response = await DioClient.instance.post(
         "/signup",
         data: {
-          "EmailAddress": email,
-          "Password": password,
-          "Name": name,
-          "Surname": surname,
+          "EmailAddress": signUpUiModel?.email,
+          "Password": signUpUiModel?.password,
+          "Name": signUpUiModel?.name,
+          "Surname": signUpUiModel?.surname,
+          "Gender": signUpUiModel?.gender,
+          "DateOfBirth": signUpUiModel?.dateOfBirth,
+          "PlaceOfBirth": signUpUiModel?.placeOfBirth,
+          "PhoneNumber": signUpUiModel?.phoneNumber,
+          "Address": signUpUiModel?.address,
+          "CountryOfAsylum": signUpUiModel?.countryOfAssylum,
+          "Nationality": signUpUiModel?.nationality,
+          "ProvinceOfResidence": signUpUiModel?.provinceOfResidence,
         },
       );
       return response;
