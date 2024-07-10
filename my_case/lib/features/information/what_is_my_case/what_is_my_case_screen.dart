@@ -29,7 +29,7 @@ class _WhatIsMyCaseScreenState extends State<WhatIsMyCaseScreen> {
   @override
   Widget build(BuildContext context) {
     return CScaffold(
-      appBar: const CAppBar(),
+      appBar: CAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0),
         child: Column(

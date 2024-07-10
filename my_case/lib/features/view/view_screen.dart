@@ -26,9 +26,9 @@ class ViewScreen extends ConsumerWidget {
 
     return CScaffold(
       appBar: CAppBar(
-        leading: CLogo(
-          size: 70,
-          logoType: LogoType.withoutText,
+        title: const CLogo(
+          size: 150,
+          heroTag: "logo",
         ),
       ),
       body: _screens[navbarIndexProvider],

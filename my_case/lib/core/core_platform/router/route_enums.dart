@@ -5,6 +5,7 @@ enum NavigationEnums {
   signUpScreen("/sign_up"),
   whatIsMyCaseScreen("/what_is_my_case"),
   requestDetailScreen("/request_detail_screen"),
+  createRequestScreen("/create_request_screen"),
   chatScreen("/chat_screen");
 
   final String routeName;

@@ -26,7 +26,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return CScaffold(
-      appBar: const CAppBar(),
+      appBar: CAppBar(),
       body: Padding(
         padding: const EdgeInsets.only(left: 24, right: 24, top: 36),
         child: Column(
