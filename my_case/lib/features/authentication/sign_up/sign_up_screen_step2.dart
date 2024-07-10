@@ -101,11 +101,11 @@ class _SignUpScreenStep2State extends ConsumerState<SignUpScreenStep2> {
                 items: [
                   DropdownMenuItem(
                     child: Text("Male"),
-                    value: "1",
+                    value: "MALE",
                   ),
                   DropdownMenuItem(
                     child: Text("Female"),
-                    value: "2",
+                    value: "FEMALE",
                   ),
                 ],
               ),

@@ -10,6 +10,7 @@ class SignUpUiModel {
   final String? address;
   final String? countryOfAssylum;
   final String? nationality;
+  final String? provinceOfResidence;
 
   SignUpUiModel({
     this.email,
@@ -23,6 +24,7 @@ class SignUpUiModel {
     this.gender,
     this.nationality,
     this.phoneNumber,
+    this.provinceOfResidence,
   });
 
   SignUpUiModel copyWith({
@@ -37,6 +39,7 @@ class SignUpUiModel {
     String? address,
     String? countryOfAssylum,
     String? nationality,
+    String? provinceOfResidence,
   }) {
     return SignUpUiModel(
       email: email ?? this.email,
@@ -50,6 +53,7 @@ class SignUpUiModel {
       address: address ?? this.address,
       countryOfAssylum: countryOfAssylum ?? this.countryOfAssylum,
       nationality: nationality ?? this.nationality,
+      provinceOfResidence: provinceOfResidence ?? this.provinceOfResidence,
     );
   }
 }
