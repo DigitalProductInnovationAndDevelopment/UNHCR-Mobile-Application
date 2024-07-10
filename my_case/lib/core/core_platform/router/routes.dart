@@ -3,8 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/features/authentication/sign_in/sign_in_screen.dart';
 import 'package:my_case/features/authentication/sign_up/sign_up_screen.dart';
+import 'package:my_case/features/authentication/sign_up/sign_up_screen_step2.dart';
+import 'package:my_case/features/authentication/sign_up/sign_up_screen_step3.dart';
+import 'package:my_case/features/authentication/sign_up/sign_up_ui_model.dart';
 import 'package:my_case/features/messages/chat/chat_screen.dart';
 import 'package:my_case/features/profile/settings/settings_screen.dart';
+import 'package:my_case/features/requests/create_request/create_request_screen.dart';
 import 'package:my_case/features/requests/request_detail/request_detail_page.dart';
 import 'package:my_case/features/view/view_screen.dart';
 import 'package:my_case/features/information/what_is_my_case/what_is_my_case_screen.dart';
@@ -29,6 +33,22 @@ List<RouteBase> goRouterRoutes = <RouteBase>[
     },
   ),
   GoRoute(
+    path: NavigationEnums.signUpScreenStep2.routeName,
+    builder: (BuildContext context, GoRouterState state) {
+      return SignUpScreenStep2(
+        signUpUiModel: state.extra as SignUpUiModel,
+      );
+    },
+  ),
+  GoRoute(
+    path: NavigationEnums.signUpScreenStep3.routeName,
+    builder: (BuildContext context, GoRouterState state) {
+      return SignUpScreenStep3(
+        signUpUiModel: state.extra as SignUpUiModel,
+      );
+    },
+  ),
+  GoRoute(
     path: NavigationEnums.whatIsMyCaseScreen.routeName,
     builder: (BuildContext context, GoRouterState state) {
       return const WhatIsMyCaseScreen();
@@ -50,6 +70,12 @@ List<RouteBase> goRouterRoutes = <RouteBase>[
     path: NavigationEnums.requestDetailScreen.routeName,
     builder: (BuildContext context, GoRouterState state) {
       return const RequestDetailPage();
+    },
+  ),
+  GoRoute(
+    path: NavigationEnums.createRequestScreen.routeName,
+    builder: (BuildContext context, GoRouterState state) {
+      return const CreateRequestScreen();
     },
   ),
 ];

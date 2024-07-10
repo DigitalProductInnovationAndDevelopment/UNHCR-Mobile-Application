@@ -10,13 +10,38 @@ class AuthRepository {
 
   AuthRepository._();
 
-  Future<Map<String, dynamic>> login(String email, String password) async {
+  Future<Map<String, dynamic>> login({
+    required String email,
+    required String password,
+  }) async {
     try {
       final response = await DioClient.instance.post(
         "/login",
         data: {
-          "email": email,
-          "password": password,
+          "EmailAddress": email,
+          "Password": password,
+        },
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Map<String, dynamic>> signUp({
+    required String email,
+    required String password,
+    required String name,
+    required String surname,
+  }) async {
+    try {
+      final response = await DioClient.instance.post(
+        "/signup",
+        data: {
+          "EmailAddress": email,
+          "Password": password,
+          "Name": name,
+          "Surname": surname,
         },
       );
       return response;

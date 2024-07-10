@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/core/design_system/components/c_button.dart';
 import 'package:my_case/core/design_system/components/c_skeleton.dart';
 import 'package:my_case/core/design_system/theme/c_colors.dart';
@@ -69,7 +71,9 @@ class RequestsScreen extends ConsumerWidget {
           ),
           CButton(
             text: 'Create New Request',
-            onTap: () {},
+            onTap: () {
+              GoRouter.of(context).push(NavigationEnums.createRequestScreen.routeName);
+            },
             icon: Icons.add,
             iconPosition: AxisDirection.left,
             iconColor: Colors.white,

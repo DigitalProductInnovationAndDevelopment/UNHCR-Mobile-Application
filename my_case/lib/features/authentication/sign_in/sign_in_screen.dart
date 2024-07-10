@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/core/design_system/components/c_app_bar.dart';
@@ -9,24 +10,26 @@ import 'package:my_case/core/design_system/components/c_scaffold.dart';
 import 'package:my_case/core/design_system/components/c_text_field.dart';
 import 'package:my_case/core/design_system/theme/c_colors.dart';
 import 'package:my_case/core/extensions/text_theme_extensions.dart';
+import 'package:my_case/data/repositories/auth_repository.dart';
+import 'package:my_case/features/authentication/sign_in/sign_in_controller.dart';
 import 'package:styled_text/tags/styled_text_tag_action.dart';
 import 'package:styled_text/widgets/styled_text.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends ConsumerStatefulWidget {
   const SignInScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  ConsumerState<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignInScreenState extends ConsumerState<SignInScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return CScaffold(
-      appBar: const CAppBar(),
+      appBar: CAppBar(),
       body: Padding(
         padding: const EdgeInsets.only(left: 24, right: 24, top: 36),
         child: Column(
@@ -60,10 +63,11 @@ class _SignInScreenState extends State<SignInScreen> {
             CButton(
               text: "Sign In",
               onTap: () async {
-                EasyLoading.show();
-                await Future.delayed(const Duration(milliseconds: 500));
-                EasyLoading.dismiss();
-                GoRouter.of(context).go(NavigationEnums.viewScreen.routeName);
+                await ref.read(signInControllerProvider).signIn(
+                      context: context,
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                    );
               },
             ),
             const SizedBox(height: 16),

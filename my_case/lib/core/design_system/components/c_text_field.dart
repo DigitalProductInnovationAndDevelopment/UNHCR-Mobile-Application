@@ -7,6 +7,7 @@ class CTextField extends StatelessWidget {
   final String? hintText;
   final double? horizontalPadding;
   final bool? isPassword;
+  final bool? isDisabled;
   final TextEditingController controller;
   const CTextField({
     super.key,
@@ -14,6 +15,7 @@ class CTextField extends StatelessWidget {
     this.horizontalPadding,
     this.hintText,
     this.isPassword,
+    this.isDisabled,
     required this.controller,
   });
 
@@ -38,6 +40,7 @@ class CTextField extends StatelessWidget {
             obscureText: isPassword ?? false,
             controller: controller,
             cursorColor: CColors.primaryColor,
+            enabled: isDisabled == null ? true : !isDisabled!,
             decoration: InputDecoration(
               hintText: hintText,
               focusedBorder: CustomBorderStyles.primaryBorder,
