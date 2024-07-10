@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:my_case/core/core_platform/constants/api_urls.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
   late Dio _dio;
@@ -7,7 +9,7 @@ class DioClient {
   DioClient._() {
     _dio = Dio(
       BaseOptions(
-        baseUrl: "",
+        baseUrl: APIUrls.BASE_URL,
         connectTimeout: const Duration(seconds: 60),
         receiveTimeout: const Duration(seconds: 60),
         responseType: ResponseType.json,
@@ -27,6 +29,15 @@ class DioClient {
         },
       ),
     );
+
+    _dio.interceptors.add(PrettyDioLogger(
+      requestHeader: true,
+      requestBody: true,
+      responseBody: true,
+      responseHeader: false,
+      error: true,
+      compact: true,
+    ));
   }
 
   ///Get Method

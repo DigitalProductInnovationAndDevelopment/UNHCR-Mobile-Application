@@ -44,7 +44,7 @@ class CAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? PreferredSize(
               preferredSize: Size.fromHeight(34.0),
               child: LinearPercentIndicator(
-                lineHeight: 14.0,
+                lineHeight: 8.0,
                 barRadius: const Radius.circular(10),
                 percent: percent,
                 backgroundColor: Colors.grey[300],
@@ -63,20 +63,12 @@ class CAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Widget _defaultLeading(BuildContext context) {
-    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
-    final bool canPop = parentRoute?.canPop ?? false;
-
-    return canPop
-        ? IconButton(
-            icon: Icon(Icons.arrow_back, color: leadingColor),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          )
-        : Container();
-  }
-
   @override
-  Size get preferredSize => Size.fromHeight(height);
+  Size get preferredSize {
+    if (showSteps) {
+      return Size.fromHeight(height + 16);
+    } else {
+      return Size.fromHeight(height);
+    }
+  }
 }
