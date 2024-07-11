@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:my_case/core/core_platform/constants/api_urls.dart';
+import 'package:my_case/core/core_platform/router/route_enums.dart';
+import 'package:my_case/core/core_platform/router/router_keys.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
@@ -28,6 +30,12 @@ class DioClient {
           return handler.next(response);
         },
         onError: (DioException e, handler) {
+          if (e.response?.statusCode == 401) {
+            navKey.currentState?.pushNamedAndRemoveUntil(
+              NavigationEnums.signInScreen.routeName,
+              (route) => false,
+            );
+          }
           return handler.next(e);
         },
       ),
