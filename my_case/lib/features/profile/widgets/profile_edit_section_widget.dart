@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:my_case/core/core_platform/router/route_enums.dart';
+import 'package:my_case/features/authentication/authenticator/authenticator_notifier.dart';
 import 'package:settings_ui/settings_ui.dart';
 
-class ProfileEditSectionWidget extends StatelessWidget {
+class ProfileEditSectionWidget extends ConsumerWidget {
   const ProfileEditSectionWidget({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Expanded(
       child: SettingsList(
         sections: [
@@ -68,6 +73,21 @@ class ProfileEditSectionWidget extends StatelessWidget {
                 leading: Icon(Icons.confirmation_number),
                 title: Text('CoA ID Number'),
                 value: Text('99123456789'),
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: Text(''),
+            tiles: <SettingsTile>[
+              SettingsTile(
+                title: Text('Logout'),
+                leading: Icon(Icons.logout),
+                onPressed: (context) async {
+                  EasyLoading.show();
+                  await ref.read(authenticatorNotifierProvider.notifier).logout();
+                  GoRouter.of(context).go(NavigationEnums.authenticator.routeName);
+                  EasyLoading.dismiss();
+                },
               ),
             ],
           ),

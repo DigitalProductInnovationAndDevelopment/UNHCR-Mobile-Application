@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:my_case/core/core_platform/constants/api_urls.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -40,11 +43,26 @@ class DioClient {
     ));
   }
 
+  Future<String?> getToken() async {
+    final storage = new FlutterSecureStorage();
+    return await storage.read(key: "accessToken");
+  }
+
+  Future<Map<String, dynamic>?> get headers async {
+    String? token = await getToken();
+    if (token == null) {
+      return null;
+    }
+
+    return {
+      HttpHeaders.authorizationHeader: 'Bearer $token',
+    };
+  }
+
   ///Get Method
   Future<Map<String, dynamic>> get(
     String path, {
     Map<String, dynamic>? queryParameters,
-    Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
   }) async {
@@ -52,7 +70,10 @@ class DioClient {
       final Response response = await _dio.get(
         path,
         queryParameters: queryParameters,
-        options: options,
+        options: Options(
+          responseType: ResponseType.json,
+          headers: await headers,
+        ),
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
@@ -70,7 +91,6 @@ class DioClient {
     String path, {
     data,
     Map<String, dynamic>? queryParameters,
-    Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
@@ -80,7 +100,10 @@ class DioClient {
         path,
         data: data,
         queryParameters: queryParameters,
-        options: options,
+        options: Options(
+          responseType: ResponseType.json,
+          headers: await headers,
+        ),
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
@@ -99,7 +122,6 @@ class DioClient {
     String path, {
     data,
     Map<String, dynamic>? queryParameters,
-    Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
@@ -109,7 +131,10 @@ class DioClient {
         path,
         data: data,
         queryParameters: queryParameters,
-        options: options,
+        options: Options(
+          responseType: ResponseType.json,
+          headers: await headers,
+        ),
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
@@ -128,7 +153,6 @@ class DioClient {
     String path, {
     data,
     Map<String, dynamic>? queryParameters,
-    Options? options,
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
@@ -138,7 +162,10 @@ class DioClient {
         path,
         data: data,
         queryParameters: queryParameters,
-        options: options,
+        options: Options(
+          responseType: ResponseType.json,
+          headers: await headers,
+        ),
         cancelToken: cancelToken,
       );
       if (response.statusCode == 204) {

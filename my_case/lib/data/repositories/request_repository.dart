@@ -1,3 +1,4 @@
+import 'package:my_case/data/client/dio_client.dart';
 import 'package:my_case/data/remote/case/case_model.dart';
 
 class RequestRepository {
@@ -12,6 +13,7 @@ class RequestRepository {
 
   Future<List<CaseModel>> getCases() async {
     try {
+      var resp = await DioClient.instance.get("/cases");
       await Future.delayed(Duration(milliseconds: 500));
       return [
         CaseModel(
