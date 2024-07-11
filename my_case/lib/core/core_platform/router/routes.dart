@@ -10,6 +10,11 @@ import 'package:my_case/features/authentication/sign_up/sign_up_ui_model.dart';
 import 'package:my_case/features/messages/chat/chat_screen.dart';
 import 'package:my_case/features/profile/settings/settings_screen.dart';
 import 'package:my_case/features/requests/create_request/create_request_screen.dart';
+import 'package:my_case/features/requests/create_request/steps/create_request_step_2.dart';
+import 'package:my_case/features/requests/create_request/steps/create_request_step_3.dart';
+import 'package:my_case/features/requests/create_request/steps/create_request_step_4.dart';
+import 'package:my_case/features/requests/create_request/steps/create_request_step_5.dart';
+import 'package:my_case/features/requests/create_request/steps/create_request_step_6.dart';
 import 'package:my_case/features/requests/request_detail/request_detail_page.dart';
 import 'package:my_case/features/view/view_screen.dart';
 import 'package:my_case/features/information/what_is_my_case/what_is_my_case_screen.dart';
@@ -83,6 +88,36 @@ List<RouteBase> goRouterRoutes = <RouteBase>[
     path: NavigationEnums.createRequestScreen.routeName,
     builder: (BuildContext context, GoRouterState state) {
       return const CreateRequestScreen();
+    },
+  ),
+  GoRoute(
+    path: NavigationEnums.createRequestScreenStep2.routeName,
+    builder: (BuildContext context, GoRouterState state) {
+      return const CreateRequestStep2Screen();
+    },
+  ),
+  GoRoute(
+    path: NavigationEnums.createRequestScreenStep3.routeName,
+    builder: (BuildContext context, GoRouterState state) {
+      return const CreateRequestStep3Screen();
+    },
+  ),
+  GoRoute(
+    path: NavigationEnums.createRequestScreenStep4.routeName,
+    builder: (BuildContext context, GoRouterState state) {
+      return const CreateRequestStep4Screen();
+    },
+  ),
+  GoRoute(
+    path: NavigationEnums.createRequestScreenStep5.routeName,
+    builder: (BuildContext context, GoRouterState state) {
+      return const CreateRequestStep5Screen();
+    },
+  ),
+  GoRoute(
+    path: NavigationEnums.createRequestScreenStep6.routeName,
+    builder: (BuildContext context, GoRouterState state) {
+      return const CreateRequestStep6Screen();
     },
   ),
 ];
