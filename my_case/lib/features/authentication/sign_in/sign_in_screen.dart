@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_case/core/core_platform/router/route_enums.dart';
@@ -10,7 +9,6 @@ import 'package:my_case/core/design_system/components/c_scaffold.dart';
 import 'package:my_case/core/design_system/components/c_text_field.dart';
 import 'package:my_case/core/design_system/theme/c_colors.dart';
 import 'package:my_case/core/extensions/text_theme_extensions.dart';
-import 'package:my_case/data/repositories/auth_repository.dart';
 import 'package:my_case/features/authentication/sign_in/sign_in_controller.dart';
 import 'package:styled_text/tags/styled_text_tag_action.dart';
 import 'package:styled_text/widgets/styled_text.dart';
