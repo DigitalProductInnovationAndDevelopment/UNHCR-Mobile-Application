@@ -8,7 +8,8 @@ enum NavigationEnums {
   whatIsMyCaseScreen("/what_is_my_case"),
   requestDetailScreen("/request_detail_screen"),
   createRequestScreen("/create_request_screen"),
-  chatScreen("/chat_screen");
+  chatScreen("/chat_screen"),
+  authenticator("/authenticator");
 
   final String routeName;
   const NavigationEnums(this.routeName);

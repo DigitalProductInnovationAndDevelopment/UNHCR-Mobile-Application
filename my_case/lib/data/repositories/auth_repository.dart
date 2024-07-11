@@ -1,3 +1,4 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:my_case/data/client/dio_client.dart';
 import 'package:my_case/features/authentication/sign_up/sign_up_ui_model.dart';
 
@@ -23,6 +24,11 @@ class AuthRepository {
           "Password": password,
         },
       );
+
+      var accessToken = response["data"]["access_token"];
+      final storage = new FlutterSecureStorage();
+      await storage.write(key: "accessToken", value: accessToken);
+
       return response;
     } catch (e) {
       rethrow;
