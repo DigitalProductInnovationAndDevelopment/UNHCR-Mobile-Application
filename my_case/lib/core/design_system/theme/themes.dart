@@ -3,6 +3,10 @@ import 'package:my_case/core/design_system/theme/c_colors.dart';
 
 class CustomThemes {
   static ThemeData primaryTheme = ThemeData(
+    chipTheme: ChipThemeData(
+      selectedColor: CColors.primaryColor,
+      checkmarkColor: CColors.white,
+    ),
     primaryColor: CColors.primaryColor,
     colorScheme: const ColorScheme(
       brightness: Brightness.light,

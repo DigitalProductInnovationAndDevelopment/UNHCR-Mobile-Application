@@ -8,6 +8,11 @@ enum NavigationEnums {
   whatIsMyCaseScreen("/what_is_my_case"),
   requestDetailScreen("/request_detail_screen"),
   createRequestScreen("/create_request_screen"),
+  createRequestScreenStep2("/create_request_screen_step_2"),
+  createRequestScreenStep3("/create_request_screen_step_3"),
+  createRequestScreenStep4("/create_request_screen_step_4"),
+  createRequestScreenStep5("/create_request_screen_step_5"),
+  createRequestScreenStep6("/create_request_screen_step_6"),
   chatScreen("/chat_screen"),
   authenticator("/authenticator");
 
