@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/core/design_system/components/c_app_bar.dart';
 import 'package:my_case/core/design_system/components/c_button.dart';
 import 'package:my_case/core/design_system/components/c_scaffold.dart';
@@ -21,7 +23,11 @@ class CreateRequestStep6Screen extends ConsumerWidget {
       data: (data) {
         uiModel = data;
       },
-      error: (error, stackTrace) {},
+      error: (error, stackTrace) {
+        if (!EasyLoading.isShow) {
+          EasyLoading.showError("An error occurred. Please try again later.");
+        }
+      },
       loading: () {},
     );
 
@@ -101,10 +107,13 @@ class CreateRequestStep6Screen extends ConsumerWidget {
                         child: Row(
                           children: [
                             ...uiModel?.selectedCaseTypes?.map((caseType) {
+                                  var text = uiModel?.caseTypes
+                                      ?.firstWhere((element) => element.id == caseType)
+                                      .name;
                                   return Padding(
                                     padding: const EdgeInsets.only(right: 8),
                                     child: FilterChip(
-                                      label: Text(caseType),
+                                      label: Text(text ?? ""),
                                       selected: true,
                                       onSelected: (value) {},
                                       selectedShadowColor: CColors.primaryColor,
@@ -180,10 +189,13 @@ class CreateRequestStep6Screen extends ConsumerWidget {
                         child: Row(
                           children: [
                             ...uiModel?.selectedSpecialNeeds?.map((specialNeed) {
+                                  var text = uiModel?.specialNeeds
+                                      ?.firstWhere((element) => element.id == specialNeed)
+                                      .name;
                                   return Padding(
                                     padding: const EdgeInsets.only(right: 8),
                                     child: FilterChip(
-                                      label: Text(specialNeed),
+                                      label: Text(text ?? ""),
                                       selected: true,
                                       onSelected: (value) {},
                                       selectedShadowColor: CColors.primaryColor,
@@ -253,8 +265,11 @@ class CreateRequestStep6Screen extends ConsumerWidget {
               CButton(
                 text: "Submit",
                 verticalPadding: 12,
-                onTap: () {
-                  ref.read(createRequestNotifierProvider.notifier).submitRequest();
+                onTap: () async {
+                  await ref.read(createRequestNotifierProvider.notifier).submitRequest();
+                  if (context.mounted) {
+                    GoRouter.of(context).go(NavigationEnums.viewScreen.routeName);
+                  }
                 },
               ),
               const SizedBox(height: 16),

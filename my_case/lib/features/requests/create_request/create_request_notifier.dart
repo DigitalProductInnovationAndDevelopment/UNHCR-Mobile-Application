@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_case/data/client/dio_client.dart';
-import 'package:my_case/data/local/case_type_list.dart';
-import 'package:my_case/data/local/special_needs_list.dart';
+import 'package:my_case/data/remote/case/case_type_model.dart';
+import 'package:my_case/data/remote/case/special_need_model.dart';
 import 'package:my_case/features/requests/create_request/create_request_ui_model.dart';
+import 'package:my_case/features/requests/requests_notifier.dart';
 
 class CreateRequestNotifier extends AsyncNotifier<CreateRequestUiModel> {
   @override
@@ -13,12 +15,29 @@ class CreateRequestNotifier extends AsyncNotifier<CreateRequestUiModel> {
 
     var caseCreate = caseCreateResp["case_create"];
 
-    // var caseTypes = List.generate();
+    var caseTypes = List<CaseTypeModel>.from(
+      caseCreate["case_types"].entries.map(
+            (entry) => CaseTypeModel(
+              id: entry.value.toString(),
+              name: entry.key,
+            ),
+          ),
+    );
+
+    var psnTypes = List<SpecialNeedModel>.from(
+      caseCreate["psn_types"].entries.map(
+            (entry) => SpecialNeedModel(
+              id: entry.value.toString(),
+              name: entry.key,
+            ),
+          ),
+    );
+
     return CreateRequestUiModel(
       selectedCategory: null,
-      caseTypes: CaseTypeList.caseTypes,
+      caseTypes: caseTypes,
       selectedCaseTypes: [],
-      specialNeeds: SpecialNeedsList.specialNeedsList,
+      specialNeeds: psnTypes,
     );
   }
 
@@ -134,11 +153,24 @@ class CreateRequestNotifier extends AsyncNotifier<CreateRequestUiModel> {
         data: {
           "Coverage": previousState.selectedCategory,
           "Description": previousState.caseDescription,
-          "CaseTypes": [],
-          "PsnTypes": [],
+          "CaseTypes": previousState.selectedCaseTypes,
+          "PsnTypes": previousState.selectedSpecialNeeds,
         },
       );
-    } catch (e) {}
+
+      ref.invalidate(requestsNotifierProvider);
+      ref.invalidateSelf();
+
+      EasyLoading.showSuccess(
+        "Request submitted successfully",
+        duration: const Duration(seconds: 1),
+      );
+    } catch (e) {
+      EasyLoading.showError(
+        "Failed to submit request. Please try again",
+        duration: const Duration(seconds: 3),
+      );
+    }
   }
 }
 

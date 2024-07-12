@@ -31,7 +31,7 @@ class SignUpController {
         duration: const Duration(seconds: 1),
       );
 
-      GoRouter.of(context).go(NavigationEnums.viewScreen.routeName);
+      GoRouter.of(context).go(NavigationEnums.signInScreen.routeName);
     } catch (e) {
       EasyLoading.showError(
         e.toString(),

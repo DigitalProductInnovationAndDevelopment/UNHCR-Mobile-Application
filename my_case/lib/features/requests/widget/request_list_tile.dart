@@ -19,12 +19,14 @@ class RequestListTile extends StatelessWidget {
   final String? subtitle;
   final Widget? leading;
   final RequestStatus? status;
+  final String? caseId;
   const RequestListTile({
     super.key,
     this.title,
     this.subtitle,
     this.leading,
     this.status,
+    this.caseId,
   });
 
   @override
@@ -60,7 +62,7 @@ class RequestListTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Case ID: 123456',
+                    'Case ID: $caseId',
                     style: context.text12.copyWith(color: CColors.black.withOpacity(0.5)),
                   ),
                   const SizedBox(height: 8.0),
