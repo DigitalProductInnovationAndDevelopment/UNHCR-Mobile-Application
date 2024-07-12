@@ -1,5 +1,10 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/core/design_system/components/c_app_bar.dart';
 import 'package:my_case/core/design_system/components/c_button.dart';
 import 'package:my_case/core/design_system/components/c_scaffold.dart';
@@ -37,49 +42,74 @@ class CreateRequestStep5Screen extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 16),
             Text(
-              "Please choose the most appropriate case type for your request (multiple select possible):",
+              "Please add supporting documents here:",
               style: context.text16,
             ),
-            const SizedBox(height: 64),
-            Wrap(
-              children: uiModel?.caseTypes != null
-                  ? uiModel?.caseTypes!
-                          .map(
-                            (caseType) => Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: FilterChip(
-                                label: Text(caseType.name),
-                                selected:
-                                    uiModel?.selectedCaseTypes?.contains(caseType.id) ?? false,
-                                onSelected: (value) {
+            const SizedBox(height: 32),
+            CButton(
+              text: "Add Documents",
+              icon: Icons.add,
+              iconPosition: AxisDirection.left,
+              iconColor: CColors.black,
+              color: CColors.white,
+              textColor: CColors.black,
+              verticalPadding: 12,
+              onTap: () async {
+                FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: true);
+
+                if (result != null) {
+                  List<File> files = result.paths.map((path) => File(path!)).toList();
+
+                  ref
+                      .read(createRequestNotifierProvider.notifier)
+                      .addDocumentPaths(files.map((file) => file.path).toList());
+                } else {}
+              },
+            ),
+            const SizedBox(height: 32),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: uiModel?.selectedDocumentPaths?.map((path) {
+                        return Container(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: Row(
+                            children: [
+                              Icon(Icons.file_copy),
+                              const SizedBox(width: 8),
+                              Text(
+                                path.split("/").last,
+                                style: context.text14,
+                              ),
+                              const Spacer(),
+                              IconButton(
+                                icon: Icon(Icons.delete),
+                                onPressed: () {
                                   ref
                                       .read(createRequestNotifierProvider.notifier)
-                                      .toggleCaseType(caseType.id);
+                                      .removeDocumentPath(path);
                                 },
-                                selectedShadowColor: CColors.primaryColor,
-                                labelStyle: TextStyle(
-                                  color: uiModel?.selectedCaseTypes?.contains(caseType.id) ?? false
-                                      ? Colors.white
-                                      : CColors.primaryColor,
-                                ),
                               ),
-                            ),
-                          )
-                          .toList() ??
-                      []
-                  : [],
+                            ],
+                          ),
+                        );
+                      }).toList() ??
+                      [],
+                ),
+              ),
             ),
-            const Spacer(),
+            const SizedBox(height: 32),
             CButton(
               text: "Continue",
               verticalPadding: 12,
-              onTap: () {},
+              onTap: () {
+                GoRouter.of(context).push(NavigationEnums.createRequestScreenStep6.routeName);
+              },
             ),
-            const SizedBox(height: 64),
+            const SizedBox(height: 32),
           ],
         ),
       ),

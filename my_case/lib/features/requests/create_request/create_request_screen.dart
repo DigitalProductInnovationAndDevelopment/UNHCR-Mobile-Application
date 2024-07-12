@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_case/core/core_platform/router/route_enums.dart';
@@ -100,7 +101,13 @@ class CreateRequestScreen extends ConsumerWidget {
             CButton(
               text: "Continue",
               verticalPadding: 12,
+              isDisabled: uiModel?.selectedCategory == null,
+              disabledColor: CColors.primaryColor.withOpacity(0.5),
               onTap: () {
+                if (uiModel?.selectedCategory == null) {
+                  EasyLoading.showError("Please select a category");
+                  return;
+                }
                 GoRouter.of(context).push(NavigationEnums.createRequestScreenStep2.routeName);
               },
             ),

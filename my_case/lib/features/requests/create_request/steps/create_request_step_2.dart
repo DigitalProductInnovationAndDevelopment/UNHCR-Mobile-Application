@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_case/core/core_platform/router/route_enums.dart';
@@ -47,39 +48,50 @@ class CreateRequestStep2Screen extends ConsumerWidget {
               style: context.text16,
             ),
             const SizedBox(height: 64),
-            Wrap(
-              children: uiModel?.caseTypes != null
-                  ? uiModel?.caseTypes!
-                          .map(
-                            (caseType) => Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: FilterChip(
-                                label: Text(caseType.name),
-                                selected:
-                                    uiModel?.selectedCaseTypes?.contains(caseType.id) ?? false,
-                                onSelected: (value) {
-                                  ref
-                                      .read(createRequestNotifierProvider.notifier)
-                                      .toggleCaseType(caseType.id);
-                                },
-                                selectedShadowColor: CColors.primaryColor,
-                                labelStyle: TextStyle(
-                                  color: uiModel?.selectedCaseTypes?.contains(caseType.id) ?? false
-                                      ? Colors.white
-                                      : CColors.primaryColor,
+            Expanded(
+              child: SingleChildScrollView(
+                child: Wrap(
+                  children: uiModel?.caseTypes != null
+                      ? uiModel?.caseTypes!
+                              .map(
+                                (caseType) => Padding(
+                                  padding: const EdgeInsets.only(right: 8),
+                                  child: FilterChip(
+                                    label: Text(caseType.name),
+                                    selected:
+                                        uiModel?.selectedCaseTypes?.contains(caseType.id) ?? false,
+                                    onSelected: (value) {
+                                      ref
+                                          .read(createRequestNotifierProvider.notifier)
+                                          .toggleCaseType(caseType.id);
+                                    },
+                                    selectedShadowColor: CColors.primaryColor,
+                                    labelStyle: TextStyle(
+                                      color:
+                                          uiModel?.selectedCaseTypes?.contains(caseType.id) ?? false
+                                              ? Colors.white
+                                              : CColors.primaryColor,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                          )
-                          .toList() ??
-                      []
-                  : [],
+                              )
+                              .toList() ??
+                          []
+                      : [],
+                ),
+              ),
             ),
-            const Spacer(),
+            const SizedBox(height: 64),
             CButton(
               text: "Continue",
               verticalPadding: 12,
+              disabledColor: CColors.primaryColor.withOpacity(0.5),
+              isDisabled: uiModel?.selectedCaseTypes?.isEmpty ?? true,
               onTap: () {
+                if (uiModel?.selectedCaseTypes?.isEmpty ?? true) {
+                  EasyLoading.showError("Please select at least one case type");
+                  return;
+                }
                 GoRouter.of(context).push(NavigationEnums.createRequestScreenStep3.routeName);
               },
             ),

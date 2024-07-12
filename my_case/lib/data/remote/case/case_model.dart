@@ -1,22 +1,25 @@
 class CaseModel {
-  final String? id;
+  final int? id;
   final String? description;
   final String? status;
   final String? date;
+  final String? type;
 
   CaseModel({
     this.id,
     this.description,
     this.status,
     this.date,
+    this.type,
   });
 
   factory CaseModel.fromJson(Map<String, dynamic> json) {
     return CaseModel(
-      id: json['id'],
-      description: json['description'],
-      status: json['status'],
-      date: json['date'],
+      id: json['ID'],
+      description: json['Description'],
+      status: json['Status'],
+      date: json['CreatedAt'],
+      type: json['Coverage'],
     );
   }
 

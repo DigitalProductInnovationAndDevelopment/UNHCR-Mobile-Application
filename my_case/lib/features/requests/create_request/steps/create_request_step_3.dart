@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_case/core/core_platform/router/route_enums.dart';
@@ -118,10 +119,16 @@ class _CreateRequestStep3ScreenState extends ConsumerState<CreateRequestStep3Scr
             CButton(
               text: "Continue",
               verticalPadding: 12,
+              disabledColor: CColors.primaryColor.withOpacity(0.5),
               onTap: () {
                 ref
                     .read(createRequestNotifierProvider.notifier)
                     .setCaseDescription(descriptionController.text);
+
+                if (descriptionController.text.isEmpty) {
+                  EasyLoading.showError("Please enter a description");
+                  return;
+                }
 
                 GoRouter.of(context).push(NavigationEnums.createRequestScreenStep4.routeName);
               },

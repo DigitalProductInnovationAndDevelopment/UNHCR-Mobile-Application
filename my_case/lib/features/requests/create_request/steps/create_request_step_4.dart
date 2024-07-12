@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/core/design_system/components/c_app_bar.dart';
 import 'package:my_case/core/design_system/components/c_button.dart';
 import 'package:my_case/core/design_system/components/c_scaffold.dart';
@@ -41,28 +44,29 @@ class CreateRequestStep4Screen extends ConsumerWidget {
           children: [
             const SizedBox(height: 16),
             Text(
-              "Please choose the most appropriate case type for your request (multiple select possible):",
+              "Does anybody in your household fall into any of these special needs?",
               style: context.text16,
             ),
             const SizedBox(height: 64),
             Wrap(
-              children: uiModel?.caseTypes != null
-                  ? uiModel?.caseTypes!
+              children: uiModel?.specialNeeds != null
+                  ? uiModel?.specialNeeds!
                           .map(
-                            (caseType) => Padding(
+                            (specialNeed) => Padding(
                               padding: const EdgeInsets.only(right: 8),
                               child: FilterChip(
-                                label: Text(caseType.name),
-                                selected:
-                                    uiModel?.selectedCaseTypes?.contains(caseType.id) ?? false,
+                                label: Text(specialNeed.name),
+                                selected: uiModel?.selectedSpecialNeeds?.contains(specialNeed.id) ??
+                                    false,
                                 onSelected: (value) {
                                   ref
                                       .read(createRequestNotifierProvider.notifier)
-                                      .toggleCaseType(caseType.id);
+                                      .toggleSpecialNeed(specialNeed.id);
                                 },
                                 selectedShadowColor: CColors.primaryColor,
                                 labelStyle: TextStyle(
-                                  color: uiModel?.selectedCaseTypes?.contains(caseType.id) ?? false
+                                  color: uiModel?.selectedSpecialNeeds?.contains(specialNeed.id) ??
+                                          false
                                       ? Colors.white
                                       : CColors.primaryColor,
                                 ),
@@ -77,7 +81,9 @@ class CreateRequestStep4Screen extends ConsumerWidget {
             CButton(
               text: "Continue",
               verticalPadding: 12,
-              onTap: () {},
+              onTap: () {
+                GoRouter.of(context).push(NavigationEnums.createRequestScreenStep5.routeName);
+              },
             ),
             const SizedBox(height: 64),
           ],

@@ -14,27 +14,7 @@ class RequestRepository {
   Future<List<CaseModel>> getCases() async {
     try {
       var resp = await DioClient.instance.get("/cases");
-      await Future.delayed(Duration(milliseconds: 500));
-      return [
-        CaseModel(
-          id: "CASE-2482",
-          description: "HOUSEHOLD",
-          status: "Open",
-          date: "2024-06-02",
-        ),
-        CaseModel(
-          id: "CASE-2483",
-          description: "INDIVIDUAL",
-          status: "Closed",
-          date: "2024-05-14",
-        ),
-        CaseModel(
-          id: "CASE-2484",
-          description: "INDIVIDUAL",
-          status: "Closed",
-          date: "2024-05-10",
-        ),
-      ];
+      return (resp["data"] as List).map((e) => CaseModel.fromJson(e)).toList();
     } catch (e) {
       rethrow;
     }

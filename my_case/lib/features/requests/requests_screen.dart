@@ -29,6 +29,14 @@ class RequestsScreen extends ConsumerWidget {
           requests.when(
             skipLoadingOnRefresh: false,
             data: (data) {
+              if (data.cases?.isEmpty ?? true) {
+                return Center(
+                  child: Text(
+                    'No requests found. Create a new request to see it here.',
+                    style: context.text16,
+                  ),
+                );
+              }
               return Expanded(
                 child: RefreshIndicator(
                   onRefresh: () async {
@@ -40,9 +48,10 @@ class RequestsScreen extends ConsumerWidget {
                     itemBuilder: (context, index) {
                       final _case = data.cases?[index];
                       return RequestListTile(
-                        title: _case?.description ?? '',
+                        caseId: _case?.id?.toString() ?? '',
+                        title: _case?.type ?? '',
                         subtitle: _case?.status ?? '',
-                        status: _case?.status == 'Open'
+                        status: _case?.status == 'OPEN'
                             ? RequestStatus.requestReceived
                             : RequestStatus.caseClosed,
                         leading: Icon(Icons.person),
@@ -69,6 +78,7 @@ class RequestsScreen extends ConsumerWidget {
               child: Text('Error: $error'),
             ),
           ),
+          const Spacer(),
           CButton(
             text: 'Create New Request',
             onTap: () {
