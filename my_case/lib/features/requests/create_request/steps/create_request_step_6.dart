@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_case/core/design_system/components/c_app_bar.dart';
 import 'package:my_case/core/design_system/components/c_button.dart';
 import 'package:my_case/core/design_system/components/c_scaffold.dart';
@@ -36,51 +37,229 @@ class CreateRequestStep6Screen extends ConsumerWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 16),
-            Text(
-              "Please choose the most appropriate case type for your request (multiple select possible):",
-              style: context.text16,
-            ),
-            const SizedBox(height: 64),
-            Wrap(
-              children: uiModel?.caseTypes != null
-                  ? uiModel?.caseTypes!
-                          .map(
-                            (caseType) => Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: FilterChip(
-                                label: Text(caseType.name),
-                                selected:
-                                    uiModel?.selectedCaseTypes?.contains(caseType.id) ?? false,
-                                onSelected: (value) {
-                                  ref
-                                      .read(createRequestNotifierProvider.notifier)
-                                      .toggleCaseType(caseType.id);
-                                },
-                                selectedShadowColor: CColors.primaryColor,
-                                labelStyle: TextStyle(
-                                  color: uiModel?.selectedCaseTypes?.contains(caseType.id) ?? false
-                                      ? Colors.white
-                                      : CColors.primaryColor,
-                                ),
-                              ),
-                            ),
-                          )
-                          .toList() ??
-                      []
-                  : [],
-            ),
-            const Spacer(),
-            CButton(
-              text: "Continue",
-              verticalPadding: 12,
-              onTap: () {},
-            ),
-            const SizedBox(height: 64),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 16),
+              Text(
+                "Review your inputs. If everything is in order, submit your request.",
+                style: context.text16,
+              ),
+              const SizedBox(height: 32),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Category: ",
+                        style: context.text16Bold,
+                      ),
+                      Text(
+                        uiModel?.selectedCategory ?? "",
+                        style: context.text16,
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        icon: Icon(Icons.edit),
+                        onPressed: () {
+                          for (int i = 0; i < 5; i++) {
+                            GoRouter.of(context).pop();
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            "Case Types: ",
+                            style: context.text16Bold,
+                          ),
+                          const Spacer(),
+                          IconButton(
+                            icon: Icon(Icons.edit),
+                            onPressed: () {
+                              for (var i = 0; i < 4; i++) {
+                                GoRouter.of(context).pop();
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            ...uiModel?.selectedCaseTypes?.map((caseType) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(right: 8),
+                                    child: FilterChip(
+                                      label: Text(caseType),
+                                      selected: true,
+                                      onSelected: (value) {},
+                                      selectedShadowColor: CColors.primaryColor,
+                                      labelStyle: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  );
+                                }).toList() ??
+                                [],
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Case Description: ",
+                        style: context.text16Bold,
+                      ),
+                      Flexible(
+                        child: Text(
+                          uiModel?.caseDescription ?? "",
+                          style: context.text16,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        icon: Icon(Icons.edit),
+                        onPressed: () {
+                          for (var i = 0; i < 3; i++) {
+                            GoRouter.of(context).pop();
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            "Special Needs: ",
+                            style: context.text16Bold,
+                          ),
+                          const Spacer(),
+                          IconButton(
+                            icon: Icon(Icons.edit),
+                            onPressed: () {
+                              for (var i = 0; i < 2; i++) {
+                                GoRouter.of(context).pop();
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            ...uiModel?.selectedSpecialNeeds?.map((specialNeed) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(right: 8),
+                                    child: FilterChip(
+                                      label: Text(specialNeed),
+                                      selected: true,
+                                      onSelected: (value) {},
+                                      selectedShadowColor: CColors.primaryColor,
+                                      labelStyle: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  );
+                                }).toList() ??
+                                [],
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            "Documents: ",
+                            style: context.text16Bold,
+                          ),
+                          const Spacer(),
+                          IconButton(
+                            icon: Icon(Icons.edit),
+                            onPressed: () {
+                              GoRouter.of(context).pop();
+                            },
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            ...uiModel?.selectedDocumentPaths?.map((path) {
+                                  return Container(
+                                    padding: const EdgeInsets.only(bottom: 8, right: 8),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.file_copy),
+                                        const SizedBox(width: 8),
+                                        Text(
+                                          path.split("/").last,
+                                          style: context.text14,
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }).toList() ??
+                                [],
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 32),
+              CButton(
+                text: "Submit",
+                verticalPadding: 12,
+                onTap: () {
+                  ref.read(createRequestNotifierProvider.notifier).submitRequest();
+                },
+              ),
+              const SizedBox(height: 16),
+            ],
+          ),
         ),
       ),
     );
