@@ -4,7 +4,7 @@ extension CustomTextStyles on BuildContext {
   TextStyle textStyle(double fontSize, FontWeight fontWeight) {
     return TextStyle(
       fontSize: fontSize,
-      color: Theme.of(this).colorScheme.onBackground,
+      color: Theme.of(this).colorScheme.onSurface,
       fontWeight: fontWeight,
     );
   }
@@ -22,6 +22,7 @@ extension CustomTextStyles on BuildContext {
   TextStyle get text32Bold => textStyle(32.0, FontWeight.w700);
   TextStyle get text28ExtraBold => textStyle(28.0, FontWeight.w900);
   TextStyle get text28 => textStyle(28.0, FontWeight.w500);
+  TextStyle get text28Bold => textStyle(28.0, FontWeight.w700);
   TextStyle get text36ExtraBold => textStyle(36.0, FontWeight.w900);
   TextStyle get text16Bold => textStyle(16.0, FontWeight.w700);
   TextStyle get text16Light => textStyle(16.0, FontWeight.w300);
