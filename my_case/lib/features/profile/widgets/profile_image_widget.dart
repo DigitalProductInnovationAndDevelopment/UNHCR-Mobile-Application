@@ -12,10 +12,13 @@ class ProfileImageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: radius + 2,
-      backgroundColor: CColors.primaryColor,
+      backgroundColor: Colors.grey[300],
       child: CircleAvatar(
         radius: radius,
-        backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/71.jpg"),
+        backgroundColor: Colors.white,
+        backgroundImage: NetworkImage(
+          "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
+        ),
       ),
     );
   }
