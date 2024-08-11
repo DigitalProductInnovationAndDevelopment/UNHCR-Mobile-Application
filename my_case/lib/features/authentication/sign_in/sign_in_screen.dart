@@ -9,6 +9,7 @@ import 'package:my_case/core/design_system/components/c_scaffold.dart';
 import 'package:my_case/core/design_system/components/c_text_field.dart';
 import 'package:my_case/core/design_system/theme/c_colors.dart';
 import 'package:my_case/core/extensions/text_theme_extensions.dart';
+import 'package:my_case/features/authentication/authenticator/authenticator_notifier.dart';
 import 'package:my_case/features/authentication/sign_in/sign_in_controller.dart';
 import 'package:styled_text/tags/styled_text_tag_action.dart';
 import 'package:styled_text/widgets/styled_text.dart';
@@ -23,6 +24,12 @@ class SignInScreen extends ConsumerStatefulWidget {
 class _SignInScreenState extends ConsumerState<SignInScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    ref.read(authenticatorNotifierProvider.notifier).logout();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

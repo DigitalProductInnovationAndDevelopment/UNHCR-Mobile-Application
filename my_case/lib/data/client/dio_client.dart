@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_case/core/core_platform/constants/api_urls.dart';
 import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/core/core_platform/router/router_keys.dart';
@@ -31,10 +32,7 @@ class DioClient {
         },
         onError: (DioException e, handler) {
           if (e.response?.statusCode == 401) {
-            navKey.currentState?.pushNamedAndRemoveUntil(
-              NavigationEnums.signInScreen.routeName,
-              (route) => false,
-            );
+            GoRouter.of(navKey.currentContext!).go(NavigationEnums.signInScreen.routeName);
           }
           return handler.next(e);
         },
