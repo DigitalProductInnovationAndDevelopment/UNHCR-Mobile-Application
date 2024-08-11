@@ -7,11 +7,20 @@ import 'package:my_case/core/design_system/theme/c_colors.dart';
 import 'package:my_case/core/extensions/text_theme_extensions.dart';
 import 'package:my_case/features/requests/request_detail/widgets/request_status_item.dart';
 
-class RequestDetailPage extends StatelessWidget {
+class RequestDetailPageParams {
   final String requestId;
+  final String status;
+  const RequestDetailPageParams({
+    required this.requestId,
+    required this.status,
+  });
+}
+
+class RequestDetailPage extends StatelessWidget {
+  final RequestDetailPageParams params;
   const RequestDetailPage({
     super.key,
-    required this.requestId,
+    required this.params,
   });
 
   @override
@@ -28,7 +37,7 @@ class RequestDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Request ID: $requestId',
+                    'Request ID: ${params.requestId}',
                     style: context.text16,
                   ),
                 ],
@@ -45,7 +54,7 @@ class RequestDetailPage extends StatelessWidget {
                       onPressed: () {
                         GoRouter.of(context).push(
                           NavigationEnums.chatScreen.routeName,
-                          extra: requestId,
+                          extra: params.requestId,
                         );
                       },
                       label: Text(
@@ -84,39 +93,54 @@ class RequestDetailPage extends StatelessWidget {
           LevelListItem(
             title: 'Request Received',
             step: '1',
-            isCompleted: true,
+            isCompleted: statusStep >= 1,
           ),
           LevelListItem(
             title: 'Request Viewed',
             step: '2',
-            isCurrent: true,
+            isCompleted: statusStep >= 2,
           ),
           LevelListItem(
             title: 'Request Reffered',
             step: '3',
-            showLine: true,
-            isNext: true,
+            isCompleted: statusStep >= 3,
           ),
           LevelListItem(
             title: 'Case Worker Assigned',
             step: '4',
-            showLine: true,
-            isNext: true,
+            isCompleted: statusStep >= 4,
           ),
           LevelListItem(
             title: 'Appointment Scheduled',
             step: '5',
-            showLine: true,
-            isNext: true,
+            isCompleted: statusStep >= 5,
           ),
           LevelListItem(
             title: 'Case Closed',
             step: '6',
-            showLine: false,
-            isNext: true,
+            isCompleted: statusStep >= 6,
           ),
         ],
       ),
     );
+  }
+
+  int get statusStep {
+    switch (params.status) {
+      case "REQUEST RECEIVED":
+        return 1;
+      case "REQUEST VIEWED":
+        return 2;
+      case "REQUEST REFERRED":
+        return 3;
+      case "CASE WORKER ASSIGNED":
+        return 4;
+      case "FIRST CONTACT SCHEDULED":
+        return 5;
+      case "CASE CLOSED":
+        return 6;
+      default:
+        return 0;
+    }
   }
 }

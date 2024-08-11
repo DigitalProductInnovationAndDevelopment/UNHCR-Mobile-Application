@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_case/data/repositories/chat_repository.dart';
@@ -28,6 +29,28 @@ class ChatNotifier extends AutoDisposeFamilyAsyncNotifier<ChatUIModel, String> {
     for (var message in messages) {
       var author = message.senderRole == "Case Supporter" ? caseWorker : user;
 
+      //if message has a media file
+      if (message.media != null) {
+        //for each media, fetch the media file from the server
+        for (var media in message.media!) {
+          var resp = await ChatRepository().getMedia(
+            messageId: media["ID"],
+            mediaId: message.id.toString(),
+          );
+
+          var uiMedia = types.FileMessage(
+            author: author,
+            id: message.id.toString(),
+            createdAt: DateTime.parse(message.createdAt ?? "").millisecondsSinceEpoch,
+            name: media["ID"],
+            size: 100,
+            uri: "",
+          );
+
+          uiMessages.add(uiMedia);
+        }
+      }
+
       var uiMessage = types.TextMessage(
         text: message.textMessage ?? "",
         author: author,
@@ -38,9 +61,9 @@ class ChatNotifier extends AutoDisposeFamilyAsyncNotifier<ChatUIModel, String> {
       uiMessages.add(uiMessage);
     }
 
-    Future.delayed(const Duration(seconds: 2), () {
-      ref.invalidateSelf();
-    });
+    // Future.delayed(const Duration(seconds: 2), () {
+    //   ref.invalidateSelf();
+    // });
 
     return ChatUIModel(
       user: user,
@@ -48,8 +71,16 @@ class ChatNotifier extends AutoDisposeFamilyAsyncNotifier<ChatUIModel, String> {
     );
   }
 
-  Future<void> sendMessage(String caseId, String text) async {
-    await ChatRepository().sendMessage(caseId, text);
+  Future<void> sendMessage({
+    required String caseId,
+    required String text,
+    List<File>? files,
+  }) async {
+    await ChatRepository().sendMessage(
+      caseId: caseId,
+      message: text,
+      files: files,
+    );
 
     ref.invalidateSelf();
   }

@@ -4,21 +4,22 @@ import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/core/design_system/components/c_list_tile.dart';
 import 'package:my_case/core/design_system/theme/c_colors.dart';
 import 'package:my_case/core/extensions/text_theme_extensions.dart';
+import 'package:my_case/features/requests/request_detail/request_detail_page.dart';
 
-enum RequestStatus {
-  requestReceived,
-  requestViewed,
-  requestReffered,
-  caseWorkerAssigned,
-  interviewScheduled,
-  caseClosed,
-}
+// enum RequestStatus {
+//   requestReceived,
+//   requestViewed,
+//   requestReffered,
+//   caseWorkerAssigned,
+//   interviewScheduled,
+//   caseClosed,
+// }
 
 class RequestListTile extends StatelessWidget {
   final String? title;
   final String? subtitle;
   final Widget? leading;
-  final RequestStatus? status;
+  final String? status;
   final String? caseId;
   const RequestListTile({
     super.key,
@@ -35,7 +36,10 @@ class RequestListTile extends StatelessWidget {
       onTap: () {
         GoRouter.of(context).push(
           NavigationEnums.requestDetailScreen.routeName,
-          extra: caseId,
+          extra: RequestDetailPageParams(
+            requestId: caseId ?? '',
+            status: status ?? '',
+          ),
         );
       },
       child: Container(
@@ -77,7 +81,7 @@ class RequestListTile extends StatelessWidget {
                           style: context.text14,
                           children: <TextSpan>[
                             TextSpan(
-                              text: statusText,
+                              text: status ?? '',
                               style: TextStyle(color: statusColor),
                             ),
                           ],
@@ -102,39 +106,20 @@ class RequestListTile extends StatelessWidget {
 
   Color get statusColor {
     switch (status) {
-      case RequestStatus.requestReceived:
+      case "REQUEST RECEIVED":
         return Colors.blue;
-      case RequestStatus.requestViewed:
+      case "REQUEST VIEWED":
         return Colors.green;
-      case RequestStatus.requestReffered:
+      case "REQUEST REFERRED":
         return Colors.orange;
-      case RequestStatus.caseWorkerAssigned:
+      case "CASE WORKER ASSIGNED":
         return Colors.purple;
-      case RequestStatus.interviewScheduled:
+      case "FIRST CONTACT SCHEDULED":
         return Colors.teal;
-      case RequestStatus.caseClosed:
+      case "CASE CLOSED":
         return Colors.red;
       default:
         return Colors.grey;
-    }
-  }
-
-  String get statusText {
-    switch (status) {
-      case RequestStatus.requestReceived:
-        return 'Pending';
-      case RequestStatus.requestViewed:
-        return 'Pending';
-      case RequestStatus.requestReffered:
-        return 'Request Reffered';
-      case RequestStatus.caseWorkerAssigned:
-        return 'Case Worker Assigned';
-      case RequestStatus.interviewScheduled:
-        return 'Interview Scheduled';
-      case RequestStatus.caseClosed:
-        return 'Case Closed';
-      default:
-        return '';
     }
   }
 }

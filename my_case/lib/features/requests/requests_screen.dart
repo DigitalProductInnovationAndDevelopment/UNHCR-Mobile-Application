@@ -53,9 +53,7 @@ class RequestsScreen extends ConsumerWidget {
                         caseId: _case?.id?.toString() ?? '',
                         title: _case?.type ?? '',
                         subtitle: _case?.status ?? '',
-                        status: _case?.status == 'OPEN'
-                            ? RequestStatus.requestReceived
-                            : RequestStatus.caseClosed,
+                        status: _case?.status,
                         leading: Icon(Icons.person),
                       );
                     },
