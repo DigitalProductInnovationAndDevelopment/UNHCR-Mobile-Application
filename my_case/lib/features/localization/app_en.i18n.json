@@ -1,4 +1,84 @@
 {
+    "bottomNavigation": {
+        "home": "Home",
+        "requests": "Requests",
+        "profile": "Profile"
+    },
+    "home": {
+        "title": "We can help.",
+        "actions": {
+            "requestAssistance": "Request Assistance"
+        },
+        "additionalServices": {
+            "title": "Additional Services",
+            "scholarships": {
+                "title": "Scholarships",
+                "description": "Find scholarships that match your profile."
+            },
+            "joinJobpool": {
+                "title": "Join Job Pool",
+                "description": "Get matched with employers looking for your skills."
+            },
+            "flagSocialTension": {
+                "title": "Flag Social Tension",
+                "description": "Report social tension in your community."
+            },
+            "flagFraud": {
+                "title": "Flag Fraud",
+                "description": "Report fraud in your community."
+            },
+            "giveFeedback": {
+                "title": "Give Feedback",
+                "description": "Help us improve our services."
+            },
+            "checkResettlement": {
+                "title": "Check Resettlement Status",
+                "description": "Check the status of your resettlement application."
+            }
+        }
+    },
+    "requests": {
+        "title": "Requests",
+        "actions": {
+            "newRequest": "Create New Request"
+        },
+        "status": "Status",
+        "caseId": "Case ID",
+        "requestDetails": {
+            "title": "Request Details",
+            "goToChat": "Go to Chat"
+        }
+    },
+    "profile": {
+        "title": "Profile",
+        "actions": {
+            "editProfile": "Edit Profile"
+        },
+        "personalInformation": {
+            "title": "Personal Information",
+            "name": "Name",
+            "surname": "Surname",
+            "dateOfBirth": "Date of Birth",
+            "location": "Location",
+            "householdSize": "Household Size"
+        },
+        "account": {
+            "title": "Account",
+            "email": "Email",
+            "phoneNumber": "Phone Number"
+        },
+        "unhcrInformation": {
+            "title": "UNHCR Information",
+            "unhcrCaseNumber": "UNHCR Case Number",
+            "coaIDNumber": "COA ID Number"
+        },
+        "settings": {
+            "title": "Settings",
+            "language": "Language",
+            "receiveNotifications": "Receive Notifications",
+            "receiveMessages": "Receive Messages"
+        }
+    },
     "actions": {
         "signIn": "Sign In"
     }

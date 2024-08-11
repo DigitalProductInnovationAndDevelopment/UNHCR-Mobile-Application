@@ -4,7 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/features/authentication/authenticator/authenticator_notifier.dart';
+import 'package:my_case/features/profile/profile_notifier.dart';
+import 'package:my_case/features/profile/profile_ui_model.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:intl/intl.dart';
 
 class ProfileEditSectionWidget extends ConsumerWidget {
   const ProfileEditSectionWidget({
@@ -13,6 +16,26 @@ class ProfileEditSectionWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ProfileUIModel? profileUIModel;
+    final profileProvider = ref.watch(profileNotifierProvider);
+
+    profileProvider.when(
+      data: (data) {
+        profileUIModel = data;
+      },
+      loading: () {},
+      error: (error, stackTrace) {},
+    );
+    if (profileUIModel == null)
+      return Center(
+        child: Column(
+          children: [
+            const CircularProgressIndicator(),
+          ],
+        ),
+      );
+
+    var dateOfBirth = DateTime.parse(profileUIModel?.profileModel?.dateOfBirth ?? '');
     return Expanded(
       child: SettingsList(
         sections: [
@@ -22,27 +45,27 @@ class ProfileEditSectionWidget extends ConsumerWidget {
               SettingsTile.navigation(
                 leading: Icon(Icons.person),
                 title: Text('Name'),
-                value: Text('Ali'),
+                value: Text(profileUIModel?.profileModel?.name ?? ''),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.person),
                 title: Text('Surname'),
-                value: Text('Mohammed'),
+                value: Text(profileUIModel?.profileModel?.surname ?? ''),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.cake),
                 title: Text('Date of Birth'),
-                value: Text('02.04.1990'),
+                value: Text(DateFormat('dd/MM/yyyy').format(dateOfBirth)),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.location_on),
                 title: Text('Location'),
-                value: Text('Adana, Turkey'),
+                value: Text(profileUIModel?.profileModel?.countryOfAsylum ?? ''),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.family_restroom),
                 title: Text('Household Size'),
-                value: Text('8'),
+                value: Text(profileUIModel?.profileModel?.householdPersonCount?.toString() ?? ''),
               ),
             ],
           ),
@@ -52,12 +75,12 @@ class ProfileEditSectionWidget extends ConsumerWidget {
               SettingsTile(
                 leading: Icon(Icons.email),
                 title: Text('Email'),
-                value: Text('mo@hotmail.com'),
+                value: Text(profileUIModel?.profileModel?.emailAddress ?? ''),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.phone),
                 title: Text('Phone Number'),
-                value: Text('+11234567890'),
+                value: Text(profileUIModel?.profileModel?.phoneNumber ?? ''),
               ),
             ],
           ),
@@ -67,12 +90,12 @@ class ProfileEditSectionWidget extends ConsumerWidget {
               SettingsTile(
                 leading: Icon(Icons.confirmation_number),
                 title: Text('UNHCR Case Number'),
-                value: Text('385-23C00891'),
+                value: Text(profileUIModel?.profileModel?.unHCRIndividualId ?? ''),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.confirmation_number),
                 title: Text('CoA ID Number'),
-                value: Text('99123456789'),
+                value: Text(profileUIModel?.profileModel?.unHCRIndividualId ?? ''),
               ),
             ],
           ),

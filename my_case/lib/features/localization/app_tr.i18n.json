@@ -1,5 +1,85 @@
 {
+    "bottomNavigation": {
+        "home": "Ana Sayfa",
+        "requests": "Talepler",
+        "profile": "Profil"
+    },
+    "home": {
+        "title": "Yardımcı olabiliriz.",
+        "actions": {
+            "requestAssistance": "Yardım Talep Et"
+        },
+        "additionalServices": {
+            "title": "Ek Hizmetler",
+            "scholarships": {
+                "title": "Burslar",
+                "description": "Profilinize uygun bursları bulun."
+            },
+            "joinJobpool": {
+                "title": "İş Havuzuna Katıl",
+                "description": "Becerilerinize uygun işverenlerle eşleşin."
+            },
+            "flagSocialTension": {
+                "title": "Sosyal Gerginliği Bildir",
+                "description": "Topluluğunuzda sosyal gerginliği bildirin."
+            },
+            "flagFraud": {
+                "title": "Dolandırıcılığı Bildir",
+                "description": "Topluluğunuzda dolandırıcılığı bildirin."
+            },
+            "giveFeedback": {
+                "title": "Geri Bildirim Ver",
+                "description": "Hizmetlerimizi geliştirmemize yardımcı olun."
+            },
+            "checkResettlement": {
+                "title": "Yerleşim Durumunu Kontrol Et",
+                "description": "Yerleşim başvurunuzun durumunu kontrol edin."
+            }
+        }
+    },
+    "requests": {
+        "title": "Talepler",
+        "actions": {
+            "newRequest": "Yeni Talep Oluştur"
+        },
+        "status": "Durum",
+        "caseId": "Dava ID",
+        "requestDetails": {
+            "title": "Talep Detayları",
+            "goToChat": "Sohbete Git"
+        }
+    },
+    "profile": {
+        "title": "Profil",
+        "actions": {
+            "editProfile": "Profili Düzenle"
+        },
+        "personalInformation": {
+            "title": "Kişisel Bilgiler",
+            "name": "İsim",
+            "surname": "Soyisim",
+            "dateOfBirth": "Doğum Tarihi",
+            "location": "Konum",
+            "householdSize": "Hane Büyüklüğü"
+        },
+        "account": {
+            "title": "Hesap",
+            "email": "E-posta",
+            "phoneNumber": "Telefon Numarası"
+        },
+        "unhcrInformation": {
+            "title": "UNHCR Bilgileri",
+            "unhcrCaseNumber": "UNHCR Dava Numarası",
+            "coaIDNumber": "COA Kimlik Numarası"
+        },
+        "settings": {
+            "title": "Ayarlar",
+            "language": "Dil",
+            "receiveNotifications": "Bildirimleri Al",
+            "receiveMessages": "Mesajları Al"
+        }
+    },
     "actions": {
-        "signIn": "Kayıt Ol"
+        "signIn": "Giriş Yap"
     }
 }

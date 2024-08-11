@@ -1,0 +1,85 @@
+{
+    "bottomNavigation": {
+        "home": "الصفحة الرئيسية",
+        "requests": "الطلبات",
+        "profile": "الملف الشخصي"
+    },
+    "home": {
+        "title": "يمكننا المساعدة.",
+        "actions": {
+            "requestAssistance": "طلب المساعدة"
+        },
+        "additionalServices": {
+            "title": "خدمات إضافية",
+            "scholarships": {
+                "title": "المنح الدراسية",
+                "description": "ابحث عن المنح الدراسية التي تتناسب مع ملفك الشخصي."
+            },
+            "joinJobpool": {
+                "title": "انضم إلى تجمع الوظائف",
+                "description": "تطابق مع أصحاب العمل الذين يبحثون عن مهاراتك."
+            },
+            "flagSocialTension": {
+                "title": "أبلغ عن التوتر الاجتماعي",
+                "description": "أبلغ عن التوتر الاجتماعي في مجتمعك."
+            },
+            "flagFraud": {
+                "title": "أبلغ عن الاحتيال",
+                "description": "أبلغ عن الاحتيال في مجتمعك."
+            },
+            "giveFeedback": {
+                "title": "أعط ملاحظات",
+                "description": "ساعدنا في تحسين خدماتنا."
+            },
+            "checkResettlement": {
+                "title": "تحقق من حالة إعادة التوطين",
+                "description": "تحقق من حالة طلب إعادة التوطين الخاص بك."
+            }
+        }
+    },
+    "requests": {
+        "title": "الطلبات",
+        "actions": {
+            "newRequest": "إنشاء طلب جديد"
+        },
+        "status": "الحالة",
+        "caseId": "معرف القضية",
+        "requestDetails": {
+            "title": "تفاصيل الطلب",
+            "goToChat": "اذهب إلى الدردشة"
+        }
+    },
+    "profile": {
+        "title": "الملف الشخصي",
+        "actions": {
+            "editProfile": "تعديل الملف الشخصي"
+        },
+        "personalInformation": {
+            "title": "معلومات شخصية",
+            "name": "الاسم",
+            "surname": "اللقب",
+            "dateOfBirth": "تاريخ الميلاد",
+            "location": "الموقع",
+            "householdSize": "حجم الأسرة"
+        },
+        "account": {
+            "title": "الحساب",
+            "email": "البريد الإلكتروني",
+            "phoneNumber": "رقم الهاتف"
+        },
+        "unhcrInformation": {
+            "title": "معلومات المفوضية",
+            "unhcrCaseNumber": "رقم قضية المفوضية",
+            "coaIDNumber": "رقم هوية COA"
+        },
+        "settings": {
+            "title": "الإعدادات",
+            "language": "اللغة",
+            "receiveNotifications": "تلقي الإشعارات",
+            "receiveMessages": "تلقي الرسائل"
+        }
+    },
+    "actions": {
+        "signIn": "تسجيل الدخول"
+    }
+}

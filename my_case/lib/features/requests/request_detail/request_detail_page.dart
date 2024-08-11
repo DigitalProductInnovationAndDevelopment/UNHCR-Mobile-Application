@@ -8,7 +8,11 @@ import 'package:my_case/core/extensions/text_theme_extensions.dart';
 import 'package:my_case/features/requests/request_detail/widgets/request_status_item.dart';
 
 class RequestDetailPage extends StatelessWidget {
-  const RequestDetailPage({super.key});
+  final String? requestId;
+  const RequestDetailPage({
+    super.key,
+    this.requestId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +27,11 @@ class RequestDetailPage extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Request ID: 123456',
-                    style: context.text16,
-                  ),
-                  Text(
-                    'Legal Support',
-                    style: context.text24Bold,
-                  ),
+                  if (requestId != null)
+                    Text(
+                      'Request ID: $requestId',
+                      style: context.text16,
+                    ),
                 ],
               ),
               Spacer(),
