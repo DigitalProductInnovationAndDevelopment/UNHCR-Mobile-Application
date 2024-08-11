@@ -41,7 +41,11 @@ class _RecordButtonState extends ConsumerState<RecordButton> {
           final randomNum = DateTime.now().millisecondsSinceEpoch;
           final fullPath = '${directory.path}/recording${randomNum}.m4a';
           print(fullPath);
-          await record.start(const RecordConfig(), path: fullPath);
+          await record.start(
+              RecordConfig(
+                encoder: Platform.isIOS ? AudioEncoder.pcm16bits : AudioEncoder.aacLc,
+              ),
+              path: fullPath);
           setState(() {
             _isRecording = true;
           });

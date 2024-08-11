@@ -78,7 +78,7 @@ class RequestsScreen extends ConsumerWidget {
               child: Text('Error: $error'),
             ),
           ),
-          const Spacer(),
+          const SizedBox(height: 16.0),
           CButton(
             text: 'Create New Request',
             onTap: () {

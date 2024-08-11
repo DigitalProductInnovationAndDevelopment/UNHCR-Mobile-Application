@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_case/data/client/dio_client.dart';
@@ -148,14 +149,23 @@ class CreateRequestNotifier extends AsyncNotifier<CreateRequestUiModel> {
     if (previousState == null) return;
 
     try {
+      var formData = FormData.fromMap({
+        "Coverage": previousState.selectedCategory,
+        "Description": previousState.caseDescription,
+        "CaseTypes": previousState.selectedCaseTypes,
+        "PsnTypes": previousState.selectedSpecialNeeds,
+        "File": [
+          for (var path in previousState.selectedDocumentPaths ?? [])
+            await MultipartFile.fromFile(path),
+        ],
+        "VoiceRecording": [
+          for (var path in previousState.recodingPaths ?? []) await MultipartFile.fromFile(path),
+        ],
+      });
+
       await DioClient.instance.post(
         "/cases",
-        data: {
-          "Coverage": previousState.selectedCategory,
-          "Description": previousState.caseDescription,
-          "CaseTypes": previousState.selectedCaseTypes,
-          "PsnTypes": previousState.selectedSpecialNeeds,
-        },
+        data: formData,
       );
 
       ref.invalidate(requestsNotifierProvider);
