@@ -7,11 +7,15 @@ import 'package:my_case/core/design_system/theme/c_colors.dart';
 import 'package:my_case/features/messages/chat/chat_notifier.dart';
 
 class ChatScreen extends ConsumerWidget {
-  const ChatScreen({super.key});
+  final String caseId;
+  const ChatScreen({
+    super.key,
+    required this.caseId,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final chatProvider = ref.watch(chatNotifierProvider);
+    final chatProvider = ref.watch(chatNotifierProvider(caseId));
 
     return chatProvider.when(
       data: (data) => Scaffold(
@@ -24,7 +28,7 @@ class ChatScreen extends ConsumerWidget {
             typingUsers: [],
           ),
           onSendPressed: (message) async {
-            await ref.read(chatNotifierProvider.notifier).sendMessage(message.text);
+            await ref.read(chatNotifierProvider(caseId).notifier).sendMessage(caseId, message.text);
           },
           showUserAvatars: true,
           showUserNames: true,
@@ -48,7 +52,11 @@ class ChatScreen extends ConsumerWidget {
           onAttachmentPressed: () {},
         ),
       ),
-      error: (error, stackTrace) => Container(),
+      error: (error, stackTrace) => Container(
+        child: Center(
+          child: Text("Error: $error"),
+        ),
+      ),
       loading: () => Container(),
     );
   }

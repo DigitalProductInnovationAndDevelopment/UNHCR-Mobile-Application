@@ -8,10 +8,10 @@ import 'package:my_case/core/extensions/text_theme_extensions.dart';
 import 'package:my_case/features/requests/request_detail/widgets/request_status_item.dart';
 
 class RequestDetailPage extends StatelessWidget {
-  final String? requestId;
+  final String requestId;
   const RequestDetailPage({
     super.key,
-    this.requestId,
+    required this.requestId,
   });
 
   @override
@@ -27,11 +27,10 @@ class RequestDetailPage extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (requestId != null)
-                    Text(
-                      'Request ID: $requestId',
-                      style: context.text16,
-                    ),
+                  Text(
+                    'Request ID: $requestId',
+                    style: context.text16,
+                  ),
                 ],
               ),
               Spacer(),
@@ -44,7 +43,10 @@ class RequestDetailPage extends StatelessWidget {
                         backgroundColor: CColors.primaryColor,
                       ),
                       onPressed: () {
-                        GoRouter.of(context).push(NavigationEnums.chatScreen.routeName);
+                        GoRouter.of(context).push(
+                          NavigationEnums.chatScreen.routeName,
+                          extra: requestId,
+                        );
                       },
                       label: Text(
                         "Go to Chat",
