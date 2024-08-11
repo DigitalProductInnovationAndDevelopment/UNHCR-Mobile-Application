@@ -4,26 +4,30 @@ import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/core/design_system/components/c_button.dart';
 import 'package:my_case/core/extensions/text_theme_extensions.dart';
 import 'package:my_case/features/home/widgets/home_service_list_tile.dart';
+import 'package:my_case/features/localization/strings.g.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final _t = Translations.of(context);
     return Column(
       children: [
         const SizedBox(height: 8),
         Card(
           elevation: 10,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "We can help.",
+                _t.home.title,
+                textAlign: TextAlign.center,
                 style: context.text32Bold,
               ),
               const SizedBox(height: 16),
               CButton(
-                text: "Request Assistance",
+                text: _t.home.actions.requestAssistance,
                 onTap: () {
                   GoRouter.of(context).push(NavigationEnums.createRequestScreen.routeName);
                 },
@@ -42,38 +46,38 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Additional Services",
+                    _t.home.additionalServices.title,
                     style: context.text18Bold,
                   ),
                   const SizedBox(height: 16),
                   HomeServiceListTile(
-                    title: "Scholarships",
-                    subtitle: "Find scholarships that match your profile",
+                    title: _t.home.additionalServices.scholarships.title,
+                    subtitle: _t.home.additionalServices.scholarships.description,
                     icon: Icons.school,
                   ),
                   HomeServiceListTile(
-                    title: "Join Jobpool",
-                    subtitle: "Find jobs that match your profile",
+                    title: _t.home.additionalServices.joinJobpool.title,
+                    subtitle: _t.home.additionalServices.joinJobpool.description,
                     icon: Icons.work,
                   ),
                   HomeServiceListTile(
-                    title: "Flag Social Tension",
-                    subtitle: "Report social tension in your area",
+                    title: _t.home.additionalServices.flagSocialTension.title,
+                    subtitle: _t.home.additionalServices.flagSocialTension.description,
                     icon: Icons.flag,
                   ),
                   HomeServiceListTile(
-                    title: "Flag Fraud",
-                    subtitle: "Report fraud in your area",
+                    title: _t.home.additionalServices.flagFraud.title,
+                    subtitle: _t.home.additionalServices.flagFraud.description,
                     icon: Icons.warning,
                   ),
                   HomeServiceListTile(
-                    title: "Give Feedback",
-                    subtitle: "Help us improve our services",
+                    title: _t.home.additionalServices.giveFeedback.title,
+                    subtitle: _t.home.additionalServices.giveFeedback.description,
                     icon: Icons.feedback,
                   ),
                   HomeServiceListTile(
-                    title: "Check Resettlement",
-                    subtitle: "Check your resettlement status",
+                    title: _t.home.additionalServices.checkResettlement.title,
+                    subtitle: _t.home.additionalServices.checkResettlement.description,
                     icon: Icons.check_circle,
                   ),
                 ],

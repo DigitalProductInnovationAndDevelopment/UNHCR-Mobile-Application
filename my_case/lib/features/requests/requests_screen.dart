@@ -6,6 +6,7 @@ import 'package:my_case/core/design_system/components/c_button.dart';
 import 'package:my_case/core/design_system/components/c_skeleton.dart';
 import 'package:my_case/core/design_system/theme/c_colors.dart';
 import 'package:my_case/core/extensions/text_theme_extensions.dart';
+import 'package:my_case/features/localization/strings.g.dart';
 import 'package:my_case/features/requests/requests_notifier.dart';
 import 'package:my_case/features/requests/widget/request_list_tile.dart';
 
@@ -14,6 +15,7 @@ class RequestsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final _t = Translations.of(context);
     final requests = ref.watch(requestsNotifierProvider);
 
     return Padding(
@@ -22,7 +24,7 @@ class RequestsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Requests',
+            _t.requests.title,
             style: context.text24Bold,
           ),
           const SizedBox(height: 16.0),
@@ -32,7 +34,7 @@ class RequestsScreen extends ConsumerWidget {
               if (data.cases?.isEmpty ?? true) {
                 return Center(
                   child: Text(
-                    'No requests found. Create a new request to see it here.',
+                    _t.requests.noRequests,
                     style: context.text16,
                   ),
                 );
@@ -80,7 +82,7 @@ class RequestsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 16.0),
           CButton(
-            text: 'Create New Request',
+            text: _t.requests.actions.newRequest,
             onTap: () {
               GoRouter.of(context).push(NavigationEnums.createRequestScreen.routeName);
             },

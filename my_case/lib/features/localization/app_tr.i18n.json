@@ -47,7 +47,8 @@
         "requestDetails": {
             "title": "Talep Detayları",
             "goToChat": "Sohbete Git"
-        }
+        },
+        "noRequests": "Talep bulunamadı. Burada görmek için yeni bir talep oluşturun."
     },
     "profile": {
         "title": "Profil",

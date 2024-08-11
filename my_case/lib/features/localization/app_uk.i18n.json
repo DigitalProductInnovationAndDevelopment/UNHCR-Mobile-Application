@@ -1,0 +1,86 @@
+{
+    "bottomNavigation": {
+        "home": "Головна",
+        "requests": "Запити",
+        "profile": "Профіль"
+    },
+    "home": {
+        "title": "Ми можемо допомогти.",
+        "actions": {
+            "requestAssistance": "Запросити допомогу"
+        },
+        "additionalServices": {
+            "title": "Додаткові послуги",
+            "scholarships": {
+                "title": "Стипендії",
+                "description": "Знайдіть стипендії, що відповідають вашому профілю."
+            },
+            "joinJobpool": {
+                "title": "Приєднатися до пулу вакансій",
+                "description": "Знайдіть роботодавців, які шукають ваші навички."
+            },
+            "flagSocialTension": {
+                "title": "Повідомити про соціальну напруженість",
+                "description": "Повідомте про соціальну напруженість у вашій громаді."
+            },
+            "flagFraud": {
+                "title": "Повідомити про шахрайство",
+                "description": "Повідомте про шахрайство у вашій громаді."
+            },
+            "giveFeedback": {
+                "title": "Залишити відгук",
+                "description": "Допоможіть нам покращити наші послуги."
+            },
+            "checkResettlement": {
+                "title": "Перевірити статус переселення",
+                "description": "Перевірте статус вашої заявки на переселення."
+            }
+        }
+    },
+    "requests": {
+        "title": "Запити",
+        "actions": {
+            "newRequest": "Створити новий запит"
+        },
+        "status": "Статус",
+        "caseId": "Ідентифікатор справи",
+        "requestDetails": {
+            "title": "Деталі запиту",
+            "goToChat": "Перейти до чату"
+        },
+        "noRequests": "Запити відсутні. Створіть новий запит, щоб побачити його тут."
+    },
+    "profile": {
+        "title": "Профіль",
+        "actions": {
+            "editProfile": "Редагувати профіль"
+        },
+        "personalInformation": {
+            "title": "Особиста інформація",
+            "name": "Ім'я",
+            "surname": "Прізвище",
+            "dateOfBirth": "Дата народження",
+            "location": "Місцезнаходження",
+            "householdSize": "Розмір домогосподарства"
+        },
+        "account": {
+            "title": "Акаунт",
+            "email": "Електронна пошта",
+            "phoneNumber": "Номер телефону"
+        },
+        "unhcrInformation": {
+            "title": "Інформація UNHCR",
+            "unhcrCaseNumber": "Номер справи UNHCR",
+            "coaIDNumber": "Номер ID COA"
+        },
+        "settings": {
+            "title": "Налаштування",
+            "language": "Мова",
+            "receiveNotifications": "Отримувати сповіщення",
+            "receiveMessages": "Отримувати повідомлення"
+        }
+    },
+    "actions": {
+        "signIn": "Увійти"
+    }
+}

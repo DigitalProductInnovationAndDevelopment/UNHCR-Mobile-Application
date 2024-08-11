@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/features/authentication/authenticator/authenticator_notifier.dart';
+import 'package:my_case/features/localization/strings.g.dart';
 import 'package:my_case/features/profile/profile_notifier.dart';
 import 'package:my_case/features/profile/profile_ui_model.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -16,6 +17,8 @@ class ProfileEditSectionWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final _t = Translations.of(context);
+
     ProfileUIModel? profileUIModel;
     final profileProvider = ref.watch(profileNotifierProvider);
 
@@ -40,61 +43,63 @@ class ProfileEditSectionWidget extends ConsumerWidget {
       child: SettingsList(
         sections: [
           SettingsSection(
-            title: Text('Personal Information'),
+            title: Text(
+              _t.profile.personalInformation.title,
+            ),
             tiles: <SettingsTile>[
               SettingsTile.navigation(
                 leading: Icon(Icons.person),
-                title: Text('Name'),
+                title: Text(_t.profile.personalInformation.name),
                 value: Text(profileUIModel?.profileModel?.name ?? ''),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.person),
-                title: Text('Surname'),
+                title: Text(_t.profile.personalInformation.surname),
                 value: Text(profileUIModel?.profileModel?.surname ?? ''),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.cake),
-                title: Text('Date of Birth'),
+                title: Text(_t.profile.personalInformation.dateOfBirth),
                 value: Text(DateFormat('dd/MM/yyyy').format(dateOfBirth)),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.location_on),
-                title: Text('Location'),
+                title: Text(_t.profile.personalInformation.location),
                 value: Text(profileUIModel?.profileModel?.countryOfAsylum ?? ''),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.family_restroom),
-                title: Text('Household Size'),
+                title: Text(_t.profile.personalInformation.householdSize),
                 value: Text(profileUIModel?.profileModel?.householdPersonCount?.toString() ?? ''),
               ),
             ],
           ),
           SettingsSection(
-            title: Text('Account'),
+            title: Text(_t.profile.account.title),
             tiles: <SettingsTile>[
               SettingsTile(
                 leading: Icon(Icons.email),
-                title: Text('Email'),
+                title: Text(_t.profile.account.email),
                 value: Text(profileUIModel?.profileModel?.emailAddress ?? ''),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.phone),
-                title: Text('Phone Number'),
+                title: Text(_t.profile.account.phoneNumber),
                 value: Text(profileUIModel?.profileModel?.phoneNumber ?? ''),
               ),
             ],
           ),
           SettingsSection(
-            title: Text('UNHCR Information'),
+            title: Text(_t.profile.unhcrInformation.title),
             tiles: <SettingsTile>[
               SettingsTile(
                 leading: Icon(Icons.confirmation_number),
-                title: Text('UNHCR Case Number'),
+                title: Text(_t.profile.unhcrInformation.unhcrCaseNumber),
                 value: Text(profileUIModel?.profileModel?.unHCRIndividualId ?? ''),
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.confirmation_number),
-                title: Text('CoA ID Number'),
+                title: Text(_t.profile.unhcrInformation.unhcrCaseNumber),
                 value: Text(profileUIModel?.profileModel?.unHCRIndividualId ?? ''),
               ),
             ],

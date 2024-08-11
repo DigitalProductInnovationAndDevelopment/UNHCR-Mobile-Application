@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_case/core/design_system/theme/c_colors.dart';
+import 'package:my_case/features/localization/strings.g.dart';
 import 'package:my_case/features/view/navigation_bar_notifier.dart';
 
 class CustomBottomNavigationBar extends ConsumerStatefulWidget {
@@ -13,6 +14,7 @@ class CustomBottomNavigationBar extends ConsumerStatefulWidget {
 class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
+    final _t = Translations.of(context);
     var index = ref.watch(navigationBarProvider);
     return Container(
       decoration: BoxDecoration(
@@ -43,17 +45,17 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
               color: Theme.of(context).colorScheme.onSurface,
             ),
             backgroundColor: Theme.of(context).colorScheme.surface,
-            items: const [
+            items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home, size: 35),
-                label: "Home",
+                label: _t.bottomNavigation.home,
               ),
               BottomNavigationBarItem(
                 icon: Padding(
                   padding: EdgeInsets.only(bottom: 5),
                   child: Icon(Icons.document_scanner, size: 30),
                 ),
-                label: "Requests",
+                label: _t.bottomNavigation.requests,
               ),
               // BottomNavigationBarItem(
               //   icon: Icon(Icons.message, size: 35),
@@ -61,7 +63,7 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
               // ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person, size: 35),
-                label: "Profile",
+                label: _t.bottomNavigation.profile,
               ),
             ],
             currentIndex: index,

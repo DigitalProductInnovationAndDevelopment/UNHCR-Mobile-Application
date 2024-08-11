@@ -47,7 +47,8 @@
         "requestDetails": {
             "title": "Request Details",
             "goToChat": "Go to Chat"
-        }
+        },
+        "noRequests": "No requests found. Create a new request to see it here."
     },
     "profile": {
         "title": "Profile",
