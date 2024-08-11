@@ -10,9 +10,10 @@ class SupportedLocales {
     var supportedLanguages = {
       'tr': 'Türkçe',
       'en': 'English',
-      'arb': 'العربية',
+      'ar': 'العربية',
       'de': 'Deutsch',
       'es': 'Español',
+      'uk': 'Українська',
     };
     return AppLocaleUtils.supportedLocalesRaw
         .map((e) => {

@@ -66,20 +66,20 @@ class SettingsScreen extends ConsumerWidget {
             child: SettingsList(
               sections: [
                 SettingsSection(
-                  title: Text('Notifications'),
+                  title: Text(_t.profile.settings.title),
                   tiles: <SettingsTile>[
                     SettingsTile.switchTile(
-                      title: Text('Receive Notifications'),
+                      title: Text(_t.profile.settings.receiveNotifications),
                       initialValue: true,
                       onToggle: (value) {},
                     ),
                     SettingsTile.switchTile(
-                      title: Text('Receive Messages'),
+                      title: Text(_t.profile.settings.receiveMessages),
                       initialValue: true,
                       onToggle: (value) {},
                     ),
                     SettingsTile.navigation(
-                      title: Text('Language'),
+                      title: Text(_t.profile.settings.language),
                       value: Text(
                         SupportedLocales.getSupportedLanguages()
                             .firstWhere(
@@ -93,7 +93,7 @@ class SettingsScreen extends ConsumerWidget {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: Text(_t.actions.signIn),
+                              title: Text(_t.profile.settings.language),
                               content: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [

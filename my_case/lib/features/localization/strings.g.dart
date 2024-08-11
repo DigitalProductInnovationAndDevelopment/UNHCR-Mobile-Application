@@ -3,10 +3,10 @@
 /// Original: lib/features/localization
 /// To regenerate, run: `dart run slang`
 ///
-/// Locales: 3
-/// Strings: 129 (43 per locale)
+/// Locales: 4
+/// Strings: 176 (44 per locale)
 ///
-/// Built on 2024-08-11 at 13:13 UTC
+/// Built on 2024-08-11 at 13:39 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -26,8 +26,9 @@ const AppLocale _baseLocale = AppLocale.en;
 /// - if (LocaleSettings.currentLocale == AppLocale.en) // locale check
 enum AppLocale with BaseAppLocale<AppLocale, Translations> {
 	en(languageCode: 'en', build: Translations.build),
-	arb(languageCode: 'arb', build: _StringsArb.build),
-	tr(languageCode: 'tr', build: _StringsTr.build);
+	ar(languageCode: 'ar', build: _StringsAr.build),
+	tr(languageCode: 'tr', build: _StringsTr.build),
+	uk(languageCode: 'uk', build: _StringsUk.build);
 
 	const AppLocale({required this.languageCode, this.scriptCode, this.countryCode, required this.build}); // ignore: unused_element
 
@@ -192,6 +193,7 @@ class _StringsRequestsEn {
 	String get status => 'Status';
 	String get caseId => 'Case ID';
 	late final _StringsRequestsRequestDetailsEn requestDetails = _StringsRequestsRequestDetailsEn._(_root);
+	String get noRequests => 'No requests found. Create a new request to see it here.';
 }
 
 // Path: profile
@@ -395,13 +397,13 @@ class _StringsHomeAdditionalServicesCheckResettlementEn {
 }
 
 // Path: <root>
-class _StringsArb implements Translations {
+class _StringsAr implements Translations {
 	/// You can call this constructor and build your own translation instance of this locale.
 	/// Constructing via the enum [AppLocale.build] is preferred.
-	_StringsArb.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
+	_StringsAr.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
 		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
 		  $meta = TranslationMetadata(
-		    locale: AppLocale.arb,
+		    locale: AppLocale.ar,
 		    overrides: overrides ?? {},
 		    cardinalResolver: cardinalResolver,
 		    ordinalResolver: ordinalResolver,
@@ -409,27 +411,27 @@ class _StringsArb implements Translations {
 		$meta.setFlatMapFunction(_flatMapFunction);
 	}
 
-	/// Metadata for the translations of <arb>.
+	/// Metadata for the translations of <ar>.
 	@override final TranslationMetadata<AppLocale, Translations> $meta;
 
 	/// Access flat map
 	@override dynamic operator[](String key) => $meta.getTranslation(key);
 
-	@override late final _StringsArb _root = this; // ignore: unused_field
+	@override late final _StringsAr _root = this; // ignore: unused_field
 
 	// Translations
-	@override late final _StringsBottomNavigationArb bottomNavigation = _StringsBottomNavigationArb._(_root);
-	@override late final _StringsHomeArb home = _StringsHomeArb._(_root);
-	@override late final _StringsRequestsArb requests = _StringsRequestsArb._(_root);
-	@override late final _StringsProfileArb profile = _StringsProfileArb._(_root);
-	@override late final _StringsActionsArb actions = _StringsActionsArb._(_root);
+	@override late final _StringsBottomNavigationAr bottomNavigation = _StringsBottomNavigationAr._(_root);
+	@override late final _StringsHomeAr home = _StringsHomeAr._(_root);
+	@override late final _StringsRequestsAr requests = _StringsRequestsAr._(_root);
+	@override late final _StringsProfileAr profile = _StringsProfileAr._(_root);
+	@override late final _StringsActionsAr actions = _StringsActionsAr._(_root);
 }
 
 // Path: bottomNavigation
-class _StringsBottomNavigationArb implements _StringsBottomNavigationEn {
-	_StringsBottomNavigationArb._(this._root);
+class _StringsBottomNavigationAr implements _StringsBottomNavigationEn {
+	_StringsBottomNavigationAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get home => 'الصفحة الرئيسية';
@@ -438,97 +440,98 @@ class _StringsBottomNavigationArb implements _StringsBottomNavigationEn {
 }
 
 // Path: home
-class _StringsHomeArb implements _StringsHomeEn {
-	_StringsHomeArb._(this._root);
+class _StringsHomeAr implements _StringsHomeEn {
+	_StringsHomeAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'يمكننا المساعدة.';
-	@override late final _StringsHomeActionsArb actions = _StringsHomeActionsArb._(_root);
-	@override late final _StringsHomeAdditionalServicesArb additionalServices = _StringsHomeAdditionalServicesArb._(_root);
+	@override late final _StringsHomeActionsAr actions = _StringsHomeActionsAr._(_root);
+	@override late final _StringsHomeAdditionalServicesAr additionalServices = _StringsHomeAdditionalServicesAr._(_root);
 }
 
 // Path: requests
-class _StringsRequestsArb implements _StringsRequestsEn {
-	_StringsRequestsArb._(this._root);
+class _StringsRequestsAr implements _StringsRequestsEn {
+	_StringsRequestsAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'الطلبات';
-	@override late final _StringsRequestsActionsArb actions = _StringsRequestsActionsArb._(_root);
+	@override late final _StringsRequestsActionsAr actions = _StringsRequestsActionsAr._(_root);
 	@override String get status => 'الحالة';
 	@override String get caseId => 'معرف القضية';
-	@override late final _StringsRequestsRequestDetailsArb requestDetails = _StringsRequestsRequestDetailsArb._(_root);
+	@override late final _StringsRequestsRequestDetailsAr requestDetails = _StringsRequestsRequestDetailsAr._(_root);
+	@override String get noRequests => 'لم يتم العثور على طلبات. أنشئ طلبًا جديدًا لرؤيته هنا.';
 }
 
 // Path: profile
-class _StringsProfileArb implements _StringsProfileEn {
-	_StringsProfileArb._(this._root);
+class _StringsProfileAr implements _StringsProfileEn {
+	_StringsProfileAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'الملف الشخصي';
-	@override late final _StringsProfileActionsArb actions = _StringsProfileActionsArb._(_root);
-	@override late final _StringsProfilePersonalInformationArb personalInformation = _StringsProfilePersonalInformationArb._(_root);
-	@override late final _StringsProfileAccountArb account = _StringsProfileAccountArb._(_root);
-	@override late final _StringsProfileUnhcrInformationArb unhcrInformation = _StringsProfileUnhcrInformationArb._(_root);
-	@override late final _StringsProfileSettingsArb settings = _StringsProfileSettingsArb._(_root);
+	@override late final _StringsProfileActionsAr actions = _StringsProfileActionsAr._(_root);
+	@override late final _StringsProfilePersonalInformationAr personalInformation = _StringsProfilePersonalInformationAr._(_root);
+	@override late final _StringsProfileAccountAr account = _StringsProfileAccountAr._(_root);
+	@override late final _StringsProfileUnhcrInformationAr unhcrInformation = _StringsProfileUnhcrInformationAr._(_root);
+	@override late final _StringsProfileSettingsAr settings = _StringsProfileSettingsAr._(_root);
 }
 
 // Path: actions
-class _StringsActionsArb implements _StringsActionsEn {
-	_StringsActionsArb._(this._root);
+class _StringsActionsAr implements _StringsActionsEn {
+	_StringsActionsAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get signIn => 'تسجيل الدخول';
 }
 
 // Path: home.actions
-class _StringsHomeActionsArb implements _StringsHomeActionsEn {
-	_StringsHomeActionsArb._(this._root);
+class _StringsHomeActionsAr implements _StringsHomeActionsEn {
+	_StringsHomeActionsAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get requestAssistance => 'طلب المساعدة';
 }
 
 // Path: home.additionalServices
-class _StringsHomeAdditionalServicesArb implements _StringsHomeAdditionalServicesEn {
-	_StringsHomeAdditionalServicesArb._(this._root);
+class _StringsHomeAdditionalServicesAr implements _StringsHomeAdditionalServicesEn {
+	_StringsHomeAdditionalServicesAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'خدمات إضافية';
-	@override late final _StringsHomeAdditionalServicesScholarshipsArb scholarships = _StringsHomeAdditionalServicesScholarshipsArb._(_root);
-	@override late final _StringsHomeAdditionalServicesJoinJobpoolArb joinJobpool = _StringsHomeAdditionalServicesJoinJobpoolArb._(_root);
-	@override late final _StringsHomeAdditionalServicesFlagSocialTensionArb flagSocialTension = _StringsHomeAdditionalServicesFlagSocialTensionArb._(_root);
-	@override late final _StringsHomeAdditionalServicesFlagFraudArb flagFraud = _StringsHomeAdditionalServicesFlagFraudArb._(_root);
-	@override late final _StringsHomeAdditionalServicesGiveFeedbackArb giveFeedback = _StringsHomeAdditionalServicesGiveFeedbackArb._(_root);
-	@override late final _StringsHomeAdditionalServicesCheckResettlementArb checkResettlement = _StringsHomeAdditionalServicesCheckResettlementArb._(_root);
+	@override late final _StringsHomeAdditionalServicesScholarshipsAr scholarships = _StringsHomeAdditionalServicesScholarshipsAr._(_root);
+	@override late final _StringsHomeAdditionalServicesJoinJobpoolAr joinJobpool = _StringsHomeAdditionalServicesJoinJobpoolAr._(_root);
+	@override late final _StringsHomeAdditionalServicesFlagSocialTensionAr flagSocialTension = _StringsHomeAdditionalServicesFlagSocialTensionAr._(_root);
+	@override late final _StringsHomeAdditionalServicesFlagFraudAr flagFraud = _StringsHomeAdditionalServicesFlagFraudAr._(_root);
+	@override late final _StringsHomeAdditionalServicesGiveFeedbackAr giveFeedback = _StringsHomeAdditionalServicesGiveFeedbackAr._(_root);
+	@override late final _StringsHomeAdditionalServicesCheckResettlementAr checkResettlement = _StringsHomeAdditionalServicesCheckResettlementAr._(_root);
 }
 
 // Path: requests.actions
-class _StringsRequestsActionsArb implements _StringsRequestsActionsEn {
-	_StringsRequestsActionsArb._(this._root);
+class _StringsRequestsActionsAr implements _StringsRequestsActionsEn {
+	_StringsRequestsActionsAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get newRequest => 'إنشاء طلب جديد';
 }
 
 // Path: requests.requestDetails
-class _StringsRequestsRequestDetailsArb implements _StringsRequestsRequestDetailsEn {
-	_StringsRequestsRequestDetailsArb._(this._root);
+class _StringsRequestsRequestDetailsAr implements _StringsRequestsRequestDetailsEn {
+	_StringsRequestsRequestDetailsAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'تفاصيل الطلب';
@@ -536,20 +539,20 @@ class _StringsRequestsRequestDetailsArb implements _StringsRequestsRequestDetail
 }
 
 // Path: profile.actions
-class _StringsProfileActionsArb implements _StringsProfileActionsEn {
-	_StringsProfileActionsArb._(this._root);
+class _StringsProfileActionsAr implements _StringsProfileActionsEn {
+	_StringsProfileActionsAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get editProfile => 'تعديل الملف الشخصي';
 }
 
 // Path: profile.personalInformation
-class _StringsProfilePersonalInformationArb implements _StringsProfilePersonalInformationEn {
-	_StringsProfilePersonalInformationArb._(this._root);
+class _StringsProfilePersonalInformationAr implements _StringsProfilePersonalInformationEn {
+	_StringsProfilePersonalInformationAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'معلومات شخصية';
@@ -561,10 +564,10 @@ class _StringsProfilePersonalInformationArb implements _StringsProfilePersonalIn
 }
 
 // Path: profile.account
-class _StringsProfileAccountArb implements _StringsProfileAccountEn {
-	_StringsProfileAccountArb._(this._root);
+class _StringsProfileAccountAr implements _StringsProfileAccountEn {
+	_StringsProfileAccountAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'الحساب';
@@ -573,10 +576,10 @@ class _StringsProfileAccountArb implements _StringsProfileAccountEn {
 }
 
 // Path: profile.unhcrInformation
-class _StringsProfileUnhcrInformationArb implements _StringsProfileUnhcrInformationEn {
-	_StringsProfileUnhcrInformationArb._(this._root);
+class _StringsProfileUnhcrInformationAr implements _StringsProfileUnhcrInformationEn {
+	_StringsProfileUnhcrInformationAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'معلومات المفوضية';
@@ -585,10 +588,10 @@ class _StringsProfileUnhcrInformationArb implements _StringsProfileUnhcrInformat
 }
 
 // Path: profile.settings
-class _StringsProfileSettingsArb implements _StringsProfileSettingsEn {
-	_StringsProfileSettingsArb._(this._root);
+class _StringsProfileSettingsAr implements _StringsProfileSettingsEn {
+	_StringsProfileSettingsAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'الإعدادات';
@@ -598,10 +601,10 @@ class _StringsProfileSettingsArb implements _StringsProfileSettingsEn {
 }
 
 // Path: home.additionalServices.scholarships
-class _StringsHomeAdditionalServicesScholarshipsArb implements _StringsHomeAdditionalServicesScholarshipsEn {
-	_StringsHomeAdditionalServicesScholarshipsArb._(this._root);
+class _StringsHomeAdditionalServicesScholarshipsAr implements _StringsHomeAdditionalServicesScholarshipsEn {
+	_StringsHomeAdditionalServicesScholarshipsAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'المنح الدراسية';
@@ -609,10 +612,10 @@ class _StringsHomeAdditionalServicesScholarshipsArb implements _StringsHomeAddit
 }
 
 // Path: home.additionalServices.joinJobpool
-class _StringsHomeAdditionalServicesJoinJobpoolArb implements _StringsHomeAdditionalServicesJoinJobpoolEn {
-	_StringsHomeAdditionalServicesJoinJobpoolArb._(this._root);
+class _StringsHomeAdditionalServicesJoinJobpoolAr implements _StringsHomeAdditionalServicesJoinJobpoolEn {
+	_StringsHomeAdditionalServicesJoinJobpoolAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'انضم إلى تجمع الوظائف';
@@ -620,10 +623,10 @@ class _StringsHomeAdditionalServicesJoinJobpoolArb implements _StringsHomeAdditi
 }
 
 // Path: home.additionalServices.flagSocialTension
-class _StringsHomeAdditionalServicesFlagSocialTensionArb implements _StringsHomeAdditionalServicesFlagSocialTensionEn {
-	_StringsHomeAdditionalServicesFlagSocialTensionArb._(this._root);
+class _StringsHomeAdditionalServicesFlagSocialTensionAr implements _StringsHomeAdditionalServicesFlagSocialTensionEn {
+	_StringsHomeAdditionalServicesFlagSocialTensionAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'أبلغ عن التوتر الاجتماعي';
@@ -631,10 +634,10 @@ class _StringsHomeAdditionalServicesFlagSocialTensionArb implements _StringsHome
 }
 
 // Path: home.additionalServices.flagFraud
-class _StringsHomeAdditionalServicesFlagFraudArb implements _StringsHomeAdditionalServicesFlagFraudEn {
-	_StringsHomeAdditionalServicesFlagFraudArb._(this._root);
+class _StringsHomeAdditionalServicesFlagFraudAr implements _StringsHomeAdditionalServicesFlagFraudEn {
+	_StringsHomeAdditionalServicesFlagFraudAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'أبلغ عن الاحتيال';
@@ -642,10 +645,10 @@ class _StringsHomeAdditionalServicesFlagFraudArb implements _StringsHomeAddition
 }
 
 // Path: home.additionalServices.giveFeedback
-class _StringsHomeAdditionalServicesGiveFeedbackArb implements _StringsHomeAdditionalServicesGiveFeedbackEn {
-	_StringsHomeAdditionalServicesGiveFeedbackArb._(this._root);
+class _StringsHomeAdditionalServicesGiveFeedbackAr implements _StringsHomeAdditionalServicesGiveFeedbackEn {
+	_StringsHomeAdditionalServicesGiveFeedbackAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'أعط ملاحظات';
@@ -653,10 +656,10 @@ class _StringsHomeAdditionalServicesGiveFeedbackArb implements _StringsHomeAddit
 }
 
 // Path: home.additionalServices.checkResettlement
-class _StringsHomeAdditionalServicesCheckResettlementArb implements _StringsHomeAdditionalServicesCheckResettlementEn {
-	_StringsHomeAdditionalServicesCheckResettlementArb._(this._root);
+class _StringsHomeAdditionalServicesCheckResettlementAr implements _StringsHomeAdditionalServicesCheckResettlementEn {
+	_StringsHomeAdditionalServicesCheckResettlementAr._(this._root);
 
-	@override final _StringsArb _root; // ignore: unused_field
+	@override final _StringsAr _root; // ignore: unused_field
 
 	// Translations
 	@override String get title => 'تحقق من حالة إعادة التوطين';
@@ -730,6 +733,7 @@ class _StringsRequestsTr implements _StringsRequestsEn {
 	@override String get status => 'Durum';
 	@override String get caseId => 'Dava ID';
 	@override late final _StringsRequestsRequestDetailsTr requestDetails = _StringsRequestsRequestDetailsTr._(_root);
+	@override String get noRequests => 'Talep bulunamadı. Burada görmek için yeni bir talep oluşturun.';
 }
 
 // Path: profile
@@ -932,6 +936,276 @@ class _StringsHomeAdditionalServicesCheckResettlementTr implements _StringsHomeA
 	@override String get description => 'Yerleşim başvurunuzun durumunu kontrol edin.';
 }
 
+// Path: <root>
+class _StringsUk implements Translations {
+	/// You can call this constructor and build your own translation instance of this locale.
+	/// Constructing via the enum [AppLocale.build] is preferred.
+	_StringsUk.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
+		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
+		  $meta = TranslationMetadata(
+		    locale: AppLocale.uk,
+		    overrides: overrides ?? {},
+		    cardinalResolver: cardinalResolver,
+		    ordinalResolver: ordinalResolver,
+		  ) {
+		$meta.setFlatMapFunction(_flatMapFunction);
+	}
+
+	/// Metadata for the translations of <uk>.
+	@override final TranslationMetadata<AppLocale, Translations> $meta;
+
+	/// Access flat map
+	@override dynamic operator[](String key) => $meta.getTranslation(key);
+
+	@override late final _StringsUk _root = this; // ignore: unused_field
+
+	// Translations
+	@override late final _StringsBottomNavigationUk bottomNavigation = _StringsBottomNavigationUk._(_root);
+	@override late final _StringsHomeUk home = _StringsHomeUk._(_root);
+	@override late final _StringsRequestsUk requests = _StringsRequestsUk._(_root);
+	@override late final _StringsProfileUk profile = _StringsProfileUk._(_root);
+	@override late final _StringsActionsUk actions = _StringsActionsUk._(_root);
+}
+
+// Path: bottomNavigation
+class _StringsBottomNavigationUk implements _StringsBottomNavigationEn {
+	_StringsBottomNavigationUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get home => 'Головна';
+	@override String get requests => 'Запити';
+	@override String get profile => 'Профіль';
+}
+
+// Path: home
+class _StringsHomeUk implements _StringsHomeEn {
+	_StringsHomeUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ми можемо допомогти.';
+	@override late final _StringsHomeActionsUk actions = _StringsHomeActionsUk._(_root);
+	@override late final _StringsHomeAdditionalServicesUk additionalServices = _StringsHomeAdditionalServicesUk._(_root);
+}
+
+// Path: requests
+class _StringsRequestsUk implements _StringsRequestsEn {
+	_StringsRequestsUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Запити';
+	@override late final _StringsRequestsActionsUk actions = _StringsRequestsActionsUk._(_root);
+	@override String get status => 'Статус';
+	@override String get caseId => 'Ідентифікатор справи';
+	@override late final _StringsRequestsRequestDetailsUk requestDetails = _StringsRequestsRequestDetailsUk._(_root);
+	@override String get noRequests => 'Запити відсутні. Створіть новий запит, щоб побачити його тут.';
+}
+
+// Path: profile
+class _StringsProfileUk implements _StringsProfileEn {
+	_StringsProfileUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Профіль';
+	@override late final _StringsProfileActionsUk actions = _StringsProfileActionsUk._(_root);
+	@override late final _StringsProfilePersonalInformationUk personalInformation = _StringsProfilePersonalInformationUk._(_root);
+	@override late final _StringsProfileAccountUk account = _StringsProfileAccountUk._(_root);
+	@override late final _StringsProfileUnhcrInformationUk unhcrInformation = _StringsProfileUnhcrInformationUk._(_root);
+	@override late final _StringsProfileSettingsUk settings = _StringsProfileSettingsUk._(_root);
+}
+
+// Path: actions
+class _StringsActionsUk implements _StringsActionsEn {
+	_StringsActionsUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get signIn => 'Увійти';
+}
+
+// Path: home.actions
+class _StringsHomeActionsUk implements _StringsHomeActionsEn {
+	_StringsHomeActionsUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get requestAssistance => 'Запросити допомогу';
+}
+
+// Path: home.additionalServices
+class _StringsHomeAdditionalServicesUk implements _StringsHomeAdditionalServicesEn {
+	_StringsHomeAdditionalServicesUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Додаткові послуги';
+	@override late final _StringsHomeAdditionalServicesScholarshipsUk scholarships = _StringsHomeAdditionalServicesScholarshipsUk._(_root);
+	@override late final _StringsHomeAdditionalServicesJoinJobpoolUk joinJobpool = _StringsHomeAdditionalServicesJoinJobpoolUk._(_root);
+	@override late final _StringsHomeAdditionalServicesFlagSocialTensionUk flagSocialTension = _StringsHomeAdditionalServicesFlagSocialTensionUk._(_root);
+	@override late final _StringsHomeAdditionalServicesFlagFraudUk flagFraud = _StringsHomeAdditionalServicesFlagFraudUk._(_root);
+	@override late final _StringsHomeAdditionalServicesGiveFeedbackUk giveFeedback = _StringsHomeAdditionalServicesGiveFeedbackUk._(_root);
+	@override late final _StringsHomeAdditionalServicesCheckResettlementUk checkResettlement = _StringsHomeAdditionalServicesCheckResettlementUk._(_root);
+}
+
+// Path: requests.actions
+class _StringsRequestsActionsUk implements _StringsRequestsActionsEn {
+	_StringsRequestsActionsUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get newRequest => 'Створити новий запит';
+}
+
+// Path: requests.requestDetails
+class _StringsRequestsRequestDetailsUk implements _StringsRequestsRequestDetailsEn {
+	_StringsRequestsRequestDetailsUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Деталі запиту';
+	@override String get goToChat => 'Перейти до чату';
+}
+
+// Path: profile.actions
+class _StringsProfileActionsUk implements _StringsProfileActionsEn {
+	_StringsProfileActionsUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get editProfile => 'Редагувати профіль';
+}
+
+// Path: profile.personalInformation
+class _StringsProfilePersonalInformationUk implements _StringsProfilePersonalInformationEn {
+	_StringsProfilePersonalInformationUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Особиста інформація';
+	@override String get name => 'Ім\'я';
+	@override String get surname => 'Прізвище';
+	@override String get dateOfBirth => 'Дата народження';
+	@override String get location => 'Місцезнаходження';
+	@override String get householdSize => 'Розмір домогосподарства';
+}
+
+// Path: profile.account
+class _StringsProfileAccountUk implements _StringsProfileAccountEn {
+	_StringsProfileAccountUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Акаунт';
+	@override String get email => 'Електронна пошта';
+	@override String get phoneNumber => 'Номер телефону';
+}
+
+// Path: profile.unhcrInformation
+class _StringsProfileUnhcrInformationUk implements _StringsProfileUnhcrInformationEn {
+	_StringsProfileUnhcrInformationUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Інформація UNHCR';
+	@override String get unhcrCaseNumber => 'Номер справи UNHCR';
+	@override String get coaIDNumber => 'Номер ID COA';
+}
+
+// Path: profile.settings
+class _StringsProfileSettingsUk implements _StringsProfileSettingsEn {
+	_StringsProfileSettingsUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Налаштування';
+	@override String get language => 'Мова';
+	@override String get receiveNotifications => 'Отримувати сповіщення';
+	@override String get receiveMessages => 'Отримувати повідомлення';
+}
+
+// Path: home.additionalServices.scholarships
+class _StringsHomeAdditionalServicesScholarshipsUk implements _StringsHomeAdditionalServicesScholarshipsEn {
+	_StringsHomeAdditionalServicesScholarshipsUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Стипендії';
+	@override String get description => 'Знайдіть стипендії, що відповідають вашому профілю.';
+}
+
+// Path: home.additionalServices.joinJobpool
+class _StringsHomeAdditionalServicesJoinJobpoolUk implements _StringsHomeAdditionalServicesJoinJobpoolEn {
+	_StringsHomeAdditionalServicesJoinJobpoolUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Приєднатися до пулу вакансій';
+	@override String get description => 'Знайдіть роботодавців, які шукають ваші навички.';
+}
+
+// Path: home.additionalServices.flagSocialTension
+class _StringsHomeAdditionalServicesFlagSocialTensionUk implements _StringsHomeAdditionalServicesFlagSocialTensionEn {
+	_StringsHomeAdditionalServicesFlagSocialTensionUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Повідомити про соціальну напруженість';
+	@override String get description => 'Повідомте про соціальну напруженість у вашій громаді.';
+}
+
+// Path: home.additionalServices.flagFraud
+class _StringsHomeAdditionalServicesFlagFraudUk implements _StringsHomeAdditionalServicesFlagFraudEn {
+	_StringsHomeAdditionalServicesFlagFraudUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Повідомити про шахрайство';
+	@override String get description => 'Повідомте про шахрайство у вашій громаді.';
+}
+
+// Path: home.additionalServices.giveFeedback
+class _StringsHomeAdditionalServicesGiveFeedbackUk implements _StringsHomeAdditionalServicesGiveFeedbackEn {
+	_StringsHomeAdditionalServicesGiveFeedbackUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Залишити відгук';
+	@override String get description => 'Допоможіть нам покращити наші послуги.';
+}
+
+// Path: home.additionalServices.checkResettlement
+class _StringsHomeAdditionalServicesCheckResettlementUk implements _StringsHomeAdditionalServicesCheckResettlementEn {
+	_StringsHomeAdditionalServicesCheckResettlementUk._(this._root);
+
+	@override final _StringsUk _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Перевірити статус переселення';
+	@override String get description => 'Перевірте статус вашої заявки на переселення.';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
@@ -962,6 +1236,7 @@ extension on Translations {
 			case 'requests.caseId': return 'Case ID';
 			case 'requests.requestDetails.title': return 'Request Details';
 			case 'requests.requestDetails.goToChat': return 'Go to Chat';
+			case 'requests.noRequests': return 'No requests found. Create a new request to see it here.';
 			case 'profile.title': return 'Profile';
 			case 'profile.actions.editProfile': return 'Edit Profile';
 			case 'profile.personalInformation.title': return 'Personal Information';
@@ -986,7 +1261,7 @@ extension on Translations {
 	}
 }
 
-extension on _StringsArb {
+extension on _StringsAr {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'bottomNavigation.home': return 'الصفحة الرئيسية';
@@ -1013,6 +1288,7 @@ extension on _StringsArb {
 			case 'requests.caseId': return 'معرف القضية';
 			case 'requests.requestDetails.title': return 'تفاصيل الطلب';
 			case 'requests.requestDetails.goToChat': return 'اذهب إلى الدردشة';
+			case 'requests.noRequests': return 'لم يتم العثور على طلبات. أنشئ طلبًا جديدًا لرؤيته هنا.';
 			case 'profile.title': return 'الملف الشخصي';
 			case 'profile.actions.editProfile': return 'تعديل الملف الشخصي';
 			case 'profile.personalInformation.title': return 'معلومات شخصية';
@@ -1064,6 +1340,7 @@ extension on _StringsTr {
 			case 'requests.caseId': return 'Dava ID';
 			case 'requests.requestDetails.title': return 'Talep Detayları';
 			case 'requests.requestDetails.goToChat': return 'Sohbete Git';
+			case 'requests.noRequests': return 'Talep bulunamadı. Burada görmek için yeni bir talep oluşturun.';
 			case 'profile.title': return 'Profil';
 			case 'profile.actions.editProfile': return 'Profili Düzenle';
 			case 'profile.personalInformation.title': return 'Kişisel Bilgiler';
@@ -1083,6 +1360,58 @@ extension on _StringsTr {
 			case 'profile.settings.receiveNotifications': return 'Bildirimleri Al';
 			case 'profile.settings.receiveMessages': return 'Mesajları Al';
 			case 'actions.signIn': return 'Giriş Yap';
+			default: return null;
+		}
+	}
+}
+
+extension on _StringsUk {
+	dynamic _flatMapFunction(String path) {
+		switch (path) {
+			case 'bottomNavigation.home': return 'Головна';
+			case 'bottomNavigation.requests': return 'Запити';
+			case 'bottomNavigation.profile': return 'Профіль';
+			case 'home.title': return 'Ми можемо допомогти.';
+			case 'home.actions.requestAssistance': return 'Запросити допомогу';
+			case 'home.additionalServices.title': return 'Додаткові послуги';
+			case 'home.additionalServices.scholarships.title': return 'Стипендії';
+			case 'home.additionalServices.scholarships.description': return 'Знайдіть стипендії, що відповідають вашому профілю.';
+			case 'home.additionalServices.joinJobpool.title': return 'Приєднатися до пулу вакансій';
+			case 'home.additionalServices.joinJobpool.description': return 'Знайдіть роботодавців, які шукають ваші навички.';
+			case 'home.additionalServices.flagSocialTension.title': return 'Повідомити про соціальну напруженість';
+			case 'home.additionalServices.flagSocialTension.description': return 'Повідомте про соціальну напруженість у вашій громаді.';
+			case 'home.additionalServices.flagFraud.title': return 'Повідомити про шахрайство';
+			case 'home.additionalServices.flagFraud.description': return 'Повідомте про шахрайство у вашій громаді.';
+			case 'home.additionalServices.giveFeedback.title': return 'Залишити відгук';
+			case 'home.additionalServices.giveFeedback.description': return 'Допоможіть нам покращити наші послуги.';
+			case 'home.additionalServices.checkResettlement.title': return 'Перевірити статус переселення';
+			case 'home.additionalServices.checkResettlement.description': return 'Перевірте статус вашої заявки на переселення.';
+			case 'requests.title': return 'Запити';
+			case 'requests.actions.newRequest': return 'Створити новий запит';
+			case 'requests.status': return 'Статус';
+			case 'requests.caseId': return 'Ідентифікатор справи';
+			case 'requests.requestDetails.title': return 'Деталі запиту';
+			case 'requests.requestDetails.goToChat': return 'Перейти до чату';
+			case 'requests.noRequests': return 'Запити відсутні. Створіть новий запит, щоб побачити його тут.';
+			case 'profile.title': return 'Профіль';
+			case 'profile.actions.editProfile': return 'Редагувати профіль';
+			case 'profile.personalInformation.title': return 'Особиста інформація';
+			case 'profile.personalInformation.name': return 'Ім\'я';
+			case 'profile.personalInformation.surname': return 'Прізвище';
+			case 'profile.personalInformation.dateOfBirth': return 'Дата народження';
+			case 'profile.personalInformation.location': return 'Місцезнаходження';
+			case 'profile.personalInformation.householdSize': return 'Розмір домогосподарства';
+			case 'profile.account.title': return 'Акаунт';
+			case 'profile.account.email': return 'Електронна пошта';
+			case 'profile.account.phoneNumber': return 'Номер телефону';
+			case 'profile.unhcrInformation.title': return 'Інформація UNHCR';
+			case 'profile.unhcrInformation.unhcrCaseNumber': return 'Номер справи UNHCR';
+			case 'profile.unhcrInformation.coaIDNumber': return 'Номер ID COA';
+			case 'profile.settings.title': return 'Налаштування';
+			case 'profile.settings.language': return 'Мова';
+			case 'profile.settings.receiveNotifications': return 'Отримувати сповіщення';
+			case 'profile.settings.receiveMessages': return 'Отримувати повідомлення';
+			case 'actions.signIn': return 'Увійти';
 			default: return null;
 		}
 	}
