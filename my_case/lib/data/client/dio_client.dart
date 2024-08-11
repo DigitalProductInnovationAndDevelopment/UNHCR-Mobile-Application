@@ -71,13 +71,14 @@ class DioClient {
     Map<String, dynamic>? queryParameters,
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
+    ResponseType? responseType,
   }) async {
     try {
       final Response response = await _dio.get(
         path,
         queryParameters: queryParameters,
         options: Options(
-          responseType: ResponseType.json,
+          responseType: responseType ?? ResponseType.json,
           headers: await headers,
         ),
         cancelToken: cancelToken,

@@ -7,16 +7,12 @@ class LevelListItem extends ConsumerWidget {
   final String title;
   final String step;
   final bool isCompleted;
-  final bool isCurrent;
-  final bool isNext;
   const LevelListItem({
     super.key,
     this.showLine = true,
     required this.title,
     required this.step,
     this.isCompleted = false,
-    this.isCurrent = false,
-    this.isNext = false,
   });
 
   final bool showLine;
@@ -28,15 +24,7 @@ class LevelListItem extends ConsumerWidget {
   get progressColor => CColors.primaryColor;
 
   Color get progressBackgroundColor {
-    if (isCompleted) {
-      return CColors.primaryColor;
-    } else if (isCurrent) {
-      return CColors.primaryColor;
-    } else if (isNext) {
-      return CColors.primaryColor;
-    } else {
-      return CColors.grey;
-    }
+    return CColors.primaryColor;
   }
 
   Color get stepColor {
@@ -46,10 +34,6 @@ class LevelListItem extends ConsumerWidget {
   get opacity {
     if (isCompleted) {
       return 1.0;
-    } else if (isCurrent) {
-      return 1.0;
-    } else if (isNext) {
-      return 0.5;
     } else {
       return 0.5;
     }
@@ -89,15 +73,12 @@ class LevelListItem extends ConsumerWidget {
                       CircleAvatar(
                         radius: 30,
                         backgroundColor: progressBackgroundColor,
-                        child: isCompleted || isCurrent
+                        child: isCompleted
                             ? Icon(
                                 icon,
                                 color: stepColor,
                               )
-                            : Text(
-                                step,
-                                style: context.text20Bold.copyWith(color: stepColor),
-                              ),
+                            : SizedBox(),
                       ),
                       if (showLine)
                         Expanded(

@@ -84,7 +84,7 @@ List<RouteBase> goRouterRoutes = <RouteBase>[
     path: NavigationEnums.requestDetailScreen.routeName,
     builder: (BuildContext context, GoRouterState state) {
       return RequestDetailPage(
-        requestId: state.extra as String,
+        params: state.extra as RequestDetailPageParams,
       );
     },
   ),

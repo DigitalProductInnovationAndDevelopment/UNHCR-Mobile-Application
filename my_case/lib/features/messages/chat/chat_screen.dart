@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
@@ -6,7 +9,7 @@ import 'package:my_case/core/design_system/components/c_app_bar.dart';
 import 'package:my_case/core/design_system/theme/c_colors.dart';
 import 'package:my_case/features/messages/chat/chat_notifier.dart';
 
-class ChatScreen extends ConsumerWidget {
+class ChatScreen extends ConsumerStatefulWidget {
   final String caseId;
   const ChatScreen({
     super.key,
@@ -14,8 +17,15 @@ class ChatScreen extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final chatProvider = ref.watch(chatNotifierProvider(caseId));
+  ConsumerState<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends ConsumerState<ChatScreen> {
+  List<File> _files = [];
+
+  @override
+  Widget build(BuildContext context) {
+    final chatProvider = ref.watch(chatNotifierProvider(widget.caseId));
 
     return chatProvider.when(
       data: (data) => Scaffold(
@@ -28,7 +38,13 @@ class ChatScreen extends ConsumerWidget {
             typingUsers: [],
           ),
           onSendPressed: (message) async {
-            await ref.read(chatNotifierProvider(caseId).notifier).sendMessage(caseId, message.text);
+            await ref.read(chatNotifierProvider(widget.caseId).notifier).sendMessage(
+                  caseId: widget.caseId,
+                  text: message.text,
+                  files: _files,
+                );
+
+            _files = [];
           },
           showUserAvatars: true,
           showUserNames: true,
@@ -49,7 +65,15 @@ class ChatScreen extends ConsumerWidget {
             enabled: true,
             sendButtonVisibilityMode: SendButtonVisibilityMode.always,
           ),
-          onAttachmentPressed: () {},
+          onAttachmentPressed: () async {
+            FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: true);
+
+            if (result != null) {
+              List<File> files = result.paths.map((path) => File(path!)).toList();
+
+              _files = files;
+            }
+          },
         ),
       ),
       error: (error, stackTrace) => Container(

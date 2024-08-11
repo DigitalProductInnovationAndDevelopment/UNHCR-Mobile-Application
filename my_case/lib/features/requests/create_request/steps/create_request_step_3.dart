@@ -130,10 +130,18 @@ class _CreateRequestStep3ScreenState extends ConsumerState<CreateRequestStep3Scr
               text: "Continue",
               verticalPadding: 12,
               disabledColor: CColors.primaryColor.withOpacity(0.5),
-              onTap: () {
-                ref
+              onTap: () async {
+                if (descriptionController.text.isEmpty) {
+                  EasyLoading.showError("Please enter a description");
+                  return;
+                }
+                await ref
                     .read(createRequestNotifierProvider.notifier)
                     .setCaseDescription(descriptionController.text);
+
+                await ref
+                    .read(createRequestNotifierProvider.notifier)
+                    .addRecordingPaths(recordings.map((recording) => recording.path).toList());
 
                 if (descriptionController.text.isEmpty) {
                   EasyLoading.showError("Please enter a description");
