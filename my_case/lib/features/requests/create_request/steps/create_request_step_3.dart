@@ -14,6 +14,7 @@ import 'package:my_case/features/requests/create_request/create_request_ui_model
 import 'package:my_case/features/requests/create_request/models/file_model.dart';
 import 'package:my_case/features/requests/create_request/recordings_notifier.dart';
 import 'package:my_case/features/requests/create_request/widgets/record_button.dart';
+import 'package:my_case/features/requests/create_request/widgets/recording_listener_bottom_sheet.dart';
 
 class CreateRequestStep3Screen extends ConsumerStatefulWidget {
   const CreateRequestStep3Screen({super.key});
@@ -98,7 +99,16 @@ class _CreateRequestStep3ScreenState extends ConsumerState<CreateRequestStep3Scr
                                 .read(recordingsNotifierProvider.notifier)
                                 .deleteRecording(recording.path);
                           },
-                          onSelected: (value) {},
+                          onSelected: (value) {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return RecordingListenerBottomSheet(
+                                  recordingPath: recording.path,
+                                );
+                              },
+                            );
+                          },
                           selected: true,
                           selectedShadowColor: CColors.primaryColor,
                           deleteIcon: const Icon(
