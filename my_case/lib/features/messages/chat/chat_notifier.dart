@@ -1,74 +1,59 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_case/data/repositories/chat_repository.dart';
 import 'package:my_case/features/messages/chat/chat_ui_model.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 
-class ChatNotifier extends AutoDisposeAsyncNotifier<ChatUIModel> {
+class ChatNotifier extends AutoDisposeFamilyAsyncNotifier<ChatUIModel, String> {
   @override
-  FutureOr<ChatUIModel> build() {
+  FutureOr<ChatUIModel> build(String caseId) async {
     final user = types.User(
       id: '1',
       imageUrl: "https://thispersondoesnotexist.com/",
-      firstName: "John",
-      lastName: "Doe",
+      firstName: "User",
+      lastName: "",
     );
+
+    final caseWorker = types.User(
+      id: '2',
+      imageUrl: "https://thispersondoesnotexist.com/",
+      firstName: "Case",
+      lastName: "Worker",
+    );
+
+    var messages = await ChatRepository().getMessages(caseId);
+
+    var uiMessages = <types.Message>[];
+    for (var message in messages) {
+      var author = message.senderRole == "Case Supporter" ? caseWorker : user;
+
+      var uiMessage = types.TextMessage(
+        text: message.textMessage ?? "",
+        author: author,
+        id: message.id.toString(),
+        createdAt: DateTime.parse(message.createdAt ?? "").millisecondsSinceEpoch,
+      );
+
+      uiMessages.add(uiMessage);
+    }
+
+    Future.delayed(const Duration(seconds: 2), () {
+      ref.invalidateSelf();
+    });
 
     return ChatUIModel(
       user: user,
-      messages: [
-        types.TextMessage(
-          text:
-              """Hi John! Regarding the request you submitted, we are currently working on it. Could you please provide us with more details?""",
-          author: types.User(
-            id: '2',
-            imageUrl: "https://thispersondoesnotexist.com/",
-            firstName: "Jane",
-            lastName: "Doe",
-          ),
-          id: DateTime.now().millisecondsSinceEpoch.toString(),
-        ),
-      ],
+      messages: uiMessages,
     );
   }
 
-  Future<void> sendMessage(String text) async {
-    await update((p0) {
-      final message = types.TextMessage(
-        text: text,
-        author: p0.user,
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-      );
+  Future<void> sendMessage(String caseId, String text) async {
+    await ChatRepository().sendMessage(caseId, text);
 
-      return ChatUIModel(
-        user: p0.user,
-        messages: [message, ...p0.messages],
-      );
-    });
-
-    //mock response
-
-    await Future.delayed(Duration(milliseconds: 500));
-
-    await update((p0) {
-      final message = types.TextMessage(
-        text: "Thank you for your message! We will get back to you soon.",
-        author: types.User(
-          id: '2',
-          imageUrl: "https://thispersondoesnotexist.com/",
-          firstName: "Jane",
-          lastName: "Doe",
-        ),
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-      );
-
-      return ChatUIModel(
-        user: p0.user,
-        messages: [message, ...p0.messages],
-      );
-    });
+    ref.invalidateSelf();
   }
 }
 
 final chatNotifierProvider =
-    AutoDisposeAsyncNotifierProvider<ChatNotifier, ChatUIModel>(ChatNotifier.new);
+    AutoDisposeAsyncNotifierProvider.family<ChatNotifier, ChatUIModel, String>(ChatNotifier.new);

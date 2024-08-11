@@ -33,7 +33,10 @@ class RequestListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        GoRouter.of(context).push(NavigationEnums.requestDetailScreen.routeName);
+        GoRouter.of(context).push(
+          NavigationEnums.requestDetailScreen.routeName,
+          extra: caseId,
+        );
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),

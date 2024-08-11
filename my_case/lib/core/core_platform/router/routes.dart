@@ -75,13 +75,17 @@ List<RouteBase> goRouterRoutes = <RouteBase>[
   GoRoute(
     path: NavigationEnums.chatScreen.routeName,
     builder: (BuildContext context, GoRouterState state) {
-      return const ChatScreen();
+      return ChatScreen(
+        caseId: state.extra as String,
+      );
     },
   ),
   GoRoute(
     path: NavigationEnums.requestDetailScreen.routeName,
     builder: (BuildContext context, GoRouterState state) {
-      return const RequestDetailPage();
+      return RequestDetailPage(
+        requestId: state.extra as String,
+      );
     },
   ),
   GoRoute(
