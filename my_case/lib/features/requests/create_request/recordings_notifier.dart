@@ -9,7 +9,7 @@ import 'package:path_provider/path_provider.dart';
 class RecordingsNotifier extends AutoDisposeAsyncNotifier<List<FileModel>> {
   @override
   FutureOr<List<FileModel>> build() async {
-    final Directory directory = await getApplicationDocumentsDirectory();
+    final Directory directory = await getTemporaryDirectory();
 
     final List<FileSystemEntity> files = directory.listSync();
 

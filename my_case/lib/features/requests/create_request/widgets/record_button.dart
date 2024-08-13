@@ -37,15 +37,12 @@ class _RecordButtonState extends ConsumerState<RecordButton> {
         }
 
         if (await record.hasPermission()) {
-          final Directory directory = await getApplicationDocumentsDirectory();
+          final Directory directory = await getTemporaryDirectory();
           final randomNum = DateTime.now().millisecondsSinceEpoch;
           final fullPath = '${directory.path}/recording${randomNum}.m4a';
+
           print(fullPath);
-          await record.start(
-              RecordConfig(
-                encoder: Platform.isIOS ? AudioEncoder.pcm16bits : AudioEncoder.aacLc,
-              ),
-              path: fullPath);
+          await record.start(RecordConfig(), path: fullPath);
           setState(() {
             _isRecording = true;
           });

@@ -153,7 +153,7 @@ class CreateRequestNotifier extends AsyncNotifier<CreateRequestUiModel> {
         "Coverage": previousState.selectedCategory,
         "Description": previousState.caseDescription,
         "CaseTypes": previousState.selectedCaseTypes,
-        "PsnTypes": previousState.selectedSpecialNeeds,
+        "PsnTypes": previousState.selectedSpecialNeeds ?? [],
         "File": [
           for (var path in previousState.selectedDocumentPaths ?? [])
             await MultipartFile.fromFile(path),
