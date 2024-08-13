@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_case/core/design_system/components/c_app_bar.dart';
 import 'package:my_case/core/design_system/components/c_logo.dart';
 import 'package:my_case/features/home/home_screen.dart';
-import 'package:my_case/features/messages/messages_screen.dart';
 import 'package:my_case/features/profile/profile_screen.dart';
 import 'package:my_case/features/requests/requests_screen.dart';
 import 'package:my_case/features/view/navigation_bar_notifier.dart';

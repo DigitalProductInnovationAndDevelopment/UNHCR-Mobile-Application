@@ -7,13 +7,11 @@ import 'package:my_case/data/repositories/auth_repository.dart';
 import 'package:my_case/features/authentication/sign_up/sign_up_ui_model.dart';
 
 final signUpControllerProvider = Provider<SignUpController>((ref) {
-  return SignUpController(ref);
+  return SignUpController();
 });
 
 class SignUpController {
-  final Ref _ref;
-
-  SignUpController(this._ref);
+  SignUpController();
 
   Future<void> signUp({
     required BuildContext context,

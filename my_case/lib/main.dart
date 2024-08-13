@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_case/core/design_system/components/c_logo.dart';
 import 'package:my_case/features/localization/strings.g.dart';
 import 'package:my_case/my_app.dart';
 
@@ -23,6 +22,7 @@ void main() {
     ..userInteractions = true
     ..dismissOnTap = true;
 
+  // ignore: missing_provider_scope
   runApp(
     TranslationProvider(
       child: const ProviderScope(

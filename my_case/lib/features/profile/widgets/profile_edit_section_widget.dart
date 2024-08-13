@@ -3,7 +3,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_case/core/core_platform/router/route_enums.dart';
-import 'package:my_case/core/design_system/components/c_button.dart';
 import 'package:my_case/features/authentication/authenticator/authenticator_notifier.dart';
 import 'package:my_case/features/localization/strings.g.dart';
 import 'package:my_case/features/profile/profile_notifier.dart';

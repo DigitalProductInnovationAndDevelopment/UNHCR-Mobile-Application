@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_case/core/design_system/theme/c_colors.dart';
 
 class ProfileImageWidget extends StatelessWidget {
   final double radius;
