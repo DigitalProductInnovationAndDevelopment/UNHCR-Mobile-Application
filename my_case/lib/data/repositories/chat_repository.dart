@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:my_case/data/client/dio_client.dart';
 import 'package:my_case/data/remote/chat/message_model.dart';
+import 'package:path_provider/path_provider.dart';
 
 class ChatRepository {
   static ChatRepository? _instance;
@@ -27,13 +28,23 @@ class ChatRepository {
   Future<dynamic> getMedia({
     required String messageId,
     required String mediaId,
-  }) {
-    var resp = DioClient.instance.get(
+  }) async {
+    var tempDir = await getApplicationDocumentsDirectory();
+    var savePath = tempDir.path + "/$mediaId.pdf";
+    if (File(savePath).existsSync()) {
+      return File(savePath);
+    }
+
+    var _ = await DioClient.instance.download(
       "/messages/$messageId/message-media/$mediaId",
-      responseType: ResponseType.stream,
+      savePath: tempDir.path + "/$mediaId.pdf",
+      onReceiveProgress: (count, total) {
+        if (total <= 0) return;
+        print('percentage: ${(count / total * 100).toStringAsFixed(0)}%');
+      },
     );
 
-    return resp;
+    return File(tempDir.path + "/$mediaId.pdf");
   }
 
   Future<void> sendMessage({

@@ -6,13 +6,11 @@ import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/data/repositories/auth_repository.dart';
 
 final signInControllerProvider = Provider<SignInController>((ref) {
-  return SignInController(ref);
+  return SignInController();
 });
 
 class SignInController {
-  final Ref _ref;
-
-  SignInController(this._ref);
+  SignInController();
 
   Future<void> signIn({
     required BuildContext context,

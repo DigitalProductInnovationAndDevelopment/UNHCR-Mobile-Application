@@ -1,5 +1,5 @@
 class MessageModel {
-  final int id;
+  final String id;
   final String? textMessage;
   final String? createdAt;
   final bool? hasMedia;

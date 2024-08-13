@@ -8,6 +8,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_case/core/design_system/components/c_app_bar.dart';
 import 'package:my_case/core/design_system/theme/c_colors.dart';
 import 'package:my_case/features/messages/chat/chat_notifier.dart';
+import 'package:my_case/features/messages/chat/widgets/file_media_widget.dart';
+import 'package:open_file/open_file.dart';
 
 class ChatScreen extends ConsumerStatefulWidget {
   final String caseId;
@@ -65,8 +67,17 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
             enabled: true,
             sendButtonVisibilityMode: SendButtonVisibilityMode.always,
           ),
+          fileMessageBuilder: (p0, {required messageWidth}) {
+            return FileMediaWidget(
+              name: p0.name,
+              size: p0.size,
+              uri: p0.uri,
+            );
+          },
           onAttachmentPressed: () async {
-            FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: true);
+            FilePickerResult? result = await FilePicker.platform.pickFiles(
+              allowMultiple: true,
+            );
 
             if (result != null) {
               List<File> files = result.paths.map((path) => File(path!)).toList();

@@ -34,8 +34,8 @@ class ChatNotifier extends AutoDisposeFamilyAsyncNotifier<ChatUIModel, String> {
         //for each media, fetch the media file from the server
         for (var media in message.media!) {
           var resp = await ChatRepository().getMedia(
-            messageId: media["ID"],
-            mediaId: message.id.toString(),
+            messageId: message.id.toString(),
+            mediaId: media["ID"],
           );
 
           var uiMedia = types.FileMessage(
@@ -44,7 +44,7 @@ class ChatNotifier extends AutoDisposeFamilyAsyncNotifier<ChatUIModel, String> {
             createdAt: DateTime.parse(message.createdAt ?? "").millisecondsSinceEpoch,
             name: media["ID"],
             size: 100,
-            uri: "",
+            uri: "${resp.path}",
           );
 
           uiMessages.add(uiMedia);
