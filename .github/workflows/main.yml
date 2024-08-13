@@ -1,4 +1,4 @@
-name: Build Flutter
+name: Flutter CI
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set up Flutter
-      uses: subosito/flutter-action@v3
+      uses: subosito/flutter-action@v2
       with:
         flutter-version: '3.22.2'
 
@@ -31,7 +31,7 @@ jobs:
 
     - name: Build Flutter app
       run: |
-        flutter build apk --release
+        flutter build apk --release  # Adjust for other build targets if needed
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
