@@ -4,6 +4,7 @@ class CaseModel {
   final String? status;
   final String? date;
   final String? type;
+  final int? unreadMessageCount;
 
   CaseModel({
     this.id,
@@ -11,6 +12,7 @@ class CaseModel {
     this.status,
     this.date,
     this.type,
+    this.unreadMessageCount,
   });
 
   factory CaseModel.fromJson(Map<String, dynamic> json) {
@@ -20,6 +22,7 @@ class CaseModel {
       status: json['Status'],
       date: json['CreatedAt'],
       type: json['Coverage'],
+      unreadMessageCount: json['UnreadMessageCount'],
     );
   }
 
