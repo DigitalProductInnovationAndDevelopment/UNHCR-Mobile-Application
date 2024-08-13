@@ -183,4 +183,32 @@ class DioClient {
       rethrow;
     }
   }
+
+  Future<dynamic> download(
+    String path, {
+    String? savePath,
+    Map<String, dynamic>? queryParameters,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    try {
+      final Response response = await _dio.download(
+        path,
+        savePath,
+        queryParameters: queryParameters,
+        options: Options(
+          responseType: ResponseType.bytes,
+          headers: await headers,
+        ),
+        cancelToken: cancelToken,
+        onReceiveProgress: onReceiveProgress,
+      );
+      if (response.statusCode == 200) {
+        return response.data;
+      }
+      throw "something went wrong";
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
