@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -8,8 +9,9 @@ import 'package:my_case/data/remote/case/case_type_model.dart';
 import 'package:my_case/data/remote/case/special_need_model.dart';
 import 'package:my_case/features/requests/create_request/create_request_ui_model.dart';
 import 'package:my_case/features/requests/requests_notifier.dart';
+import 'package:path_provider/path_provider.dart';
 
-class CreateRequestNotifier extends AsyncNotifier<CreateRequestUiModel> {
+class CreateRequestNotifier extends AutoDisposeAsyncNotifier<CreateRequestUiModel> {
   @override
   FutureOr<CreateRequestUiModel> build() async {
     var caseCreateResp = await DioClient.instance.get("/cases");
@@ -151,7 +153,10 @@ class CreateRequestNotifier extends AsyncNotifier<CreateRequestUiModel> {
     try {
       var formData = FormData.fromMap({
         "Coverage": previousState.selectedCategory,
-        "Description": previousState.caseDescription,
+        //TODO: fix
+        "Description": previousState.caseDescription?.isEmpty ?? false
+            ? "."
+            : previousState.caseDescription ?? ".",
         "CaseTypes": previousState.selectedCaseTypes,
         "PsnTypes": previousState.selectedSpecialNeeds ?? [],
         "File": [
@@ -163,10 +168,17 @@ class CreateRequestNotifier extends AsyncNotifier<CreateRequestUiModel> {
         ],
       });
 
-      await DioClient.instance.post(
-        "/cases",
-        data: formData,
-      );
+      try {
+        await DioClient.instance.post(
+          "/cases",
+          data: formData,
+        );
+      } catch (e) {}
+
+      var tempDir = await getTemporaryDirectory();
+      tempDir.listSync().forEach((element) {
+        if (element is File && element.uri.path.contains(".m4a")) element.deleteSync();
+      });
 
       ref.invalidate(requestsNotifierProvider);
       ref.invalidateSelf();
@@ -185,6 +197,6 @@ class CreateRequestNotifier extends AsyncNotifier<CreateRequestUiModel> {
 }
 
 final createRequestNotifierProvider =
-    AsyncNotifierProvider<CreateRequestNotifier, CreateRequestUiModel>(
+    AutoDisposeAsyncNotifierProvider<CreateRequestNotifier, CreateRequestUiModel>(
   CreateRequestNotifier.new,
 );

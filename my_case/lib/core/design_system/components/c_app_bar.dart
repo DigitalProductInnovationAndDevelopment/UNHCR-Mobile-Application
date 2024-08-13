@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_case/core/design_system/theme/c_colors.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class CAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -15,7 +16,7 @@ class CAppBar extends StatelessWidget implements PreferredSizeWidget {
   CAppBar({
     super.key,
     this.height = 60,
-    this.backgroundColor = Colors.transparent,
+    this.backgroundColor = CColors.white,
     this.elevation = 0,
     this.leadingColor = Colors.black,
     this.title,

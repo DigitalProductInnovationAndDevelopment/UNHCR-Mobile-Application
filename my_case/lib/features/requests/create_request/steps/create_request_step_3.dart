@@ -131,10 +131,6 @@ class _CreateRequestStep3ScreenState extends ConsumerState<CreateRequestStep3Scr
               verticalPadding: 12,
               disabledColor: CColors.primaryColor.withOpacity(0.5),
               onTap: () async {
-                if (descriptionController.text.isEmpty) {
-                  EasyLoading.showError("Please enter a description");
-                  return;
-                }
                 await ref
                     .read(createRequestNotifierProvider.notifier)
                     .setCaseDescription(descriptionController.text);
@@ -143,7 +139,7 @@ class _CreateRequestStep3ScreenState extends ConsumerState<CreateRequestStep3Scr
                     .read(createRequestNotifierProvider.notifier)
                     .addRecordingPaths(recordings.map((recording) => recording.path).toList());
 
-                if (descriptionController.text.isEmpty) {
+                if (recordings.isEmpty && descriptionController.text.isEmpty) {
                   EasyLoading.showError("Please enter a description");
                   return;
                 }

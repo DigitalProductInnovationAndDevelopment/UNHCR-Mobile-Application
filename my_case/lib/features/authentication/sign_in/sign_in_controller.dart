@@ -4,13 +4,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_case/core/core_platform/router/route_enums.dart';
 import 'package:my_case/data/repositories/auth_repository.dart';
+import 'package:my_case/features/view/navigation_bar_notifier.dart';
 
 final signInControllerProvider = Provider<SignInController>((ref) {
-  return SignInController();
+  return SignInController(ref);
 });
 
 class SignInController {
-  SignInController();
+  final Ref _ref;
+  SignInController(this._ref);
 
   Future<void> signIn({
     required BuildContext context,
@@ -24,6 +26,8 @@ class SignInController {
         email: email,
         password: password,
       );
+
+      _ref.read(navigationBarProvider.notifier).setIndex(0);
     } catch (e) {
       EasyLoading.showError(
         e.toString(),

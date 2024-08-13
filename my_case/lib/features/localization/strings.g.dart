@@ -6,7 +6,7 @@
 /// Locales: 4
 /// Strings: 176 (44 per locale)
 ///
-/// Built on 2024-08-11 at 13:39 UTC
+/// Built on 2024-08-13 at 16:09 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -176,7 +176,7 @@ class _StringsHomeEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get title => 'We can help.';
+	String get title => 'How can we can help?';
 	late final _StringsHomeActionsEn actions = _StringsHomeActionsEn._(_root);
 	late final _StringsHomeAdditionalServicesEn additionalServices = _StringsHomeAdditionalServicesEn._(_root);
 }
@@ -1215,7 +1215,7 @@ extension on Translations {
 			case 'bottomNavigation.home': return 'Home';
 			case 'bottomNavigation.requests': return 'Requests';
 			case 'bottomNavigation.profile': return 'Profile';
-			case 'home.title': return 'We can help.';
+			case 'home.title': return 'How can we can help?';
 			case 'home.actions.requestAssistance': return 'Request Assistance';
 			case 'home.additionalServices.title': return 'Additional Services';
 			case 'home.additionalServices.scholarships.title': return 'Scholarships';

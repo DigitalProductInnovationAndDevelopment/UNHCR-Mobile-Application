@@ -14,7 +14,6 @@ class HomeScreen extends StatelessWidget {
     final _t = Translations.of(context);
     return Column(
       children: [
-        const SizedBox(height: 8),
         Card(
           elevation: 10,
           child: Column(
@@ -23,7 +22,7 @@ class HomeScreen extends StatelessWidget {
               Text(
                 _t.home.title,
                 textAlign: TextAlign.center,
-                style: context.text32Bold,
+                style: context.text28Bold,
               ),
               const SizedBox(height: 16),
               CButton(
@@ -40,6 +39,7 @@ class HomeScreen extends StatelessWidget {
         ),
         Expanded(
           child: SingleChildScrollView(
+            clipBehavior: Clip.hardEdge,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(

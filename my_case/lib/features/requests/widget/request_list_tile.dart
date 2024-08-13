@@ -5,6 +5,7 @@ import 'package:my_case/core/design_system/components/c_list_tile.dart';
 import 'package:my_case/core/design_system/theme/c_colors.dart';
 import 'package:my_case/core/extensions/text_theme_extensions.dart';
 import 'package:my_case/features/requests/request_detail/request_detail_page.dart';
+import 'package:intl/intl.dart';
 
 // enum RequestStatus {
 //   requestReceived,
@@ -32,6 +33,7 @@ class RequestListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var dateFormatted = DateFormat('dd/MM/yyyy').format(DateTime.now());
     return InkWell(
       onTap: () {
         GoRouter.of(context).push(
@@ -75,21 +77,24 @@ class RequestListTile extends StatelessWidget {
                   const SizedBox(height: 8.0),
                   Row(
                     children: [
-                      RichText(
-                        text: TextSpan(
-                          text: 'Status: ',
-                          style: context.text14,
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: status ?? '',
-                              style: TextStyle(color: statusColor),
-                            ),
-                          ],
+                      SizedBox(
+                        width: 200,
+                        child: RichText(
+                          text: TextSpan(
+                            text: 'Status: ',
+                            style: context.text14,
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: status ?? '',
+                                style: TextStyle(color: statusColor),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       const Spacer(),
                       Text(
-                        "02/06/2024",
+                        dateFormatted,
                         style: context.text12.copyWith(color: CColors.black.withOpacity(0.5)),
                       ),
                     ],

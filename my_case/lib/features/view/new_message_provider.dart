@@ -9,9 +9,9 @@ import 'package:my_case/data/repositories/request_repository.dart';
 import 'package:my_case/features/notification/widgets/notification_widget.dart';
 import 'package:collection/collection.dart';
 
-class NewMessageProvider extends AsyncNotifier<bool> {
+class NewMessageProvider extends AsyncNotifier<int> {
   @override
-  FutureOr<bool> build() async {
+  FutureOr<int> build() async {
     var cases = await RequestRepository().getCases();
 
     Timer.periodic(
@@ -22,30 +22,44 @@ class NewMessageProvider extends AsyncNotifier<bool> {
         var caseWithMessage = cases.firstWhereOrNull((element) {
           return element.unreadMessageCount != null && element.unreadMessageCount! > 0;
         });
-        if (caseWithMessage != null) {
-          BotToast.showCustomNotification(
-            duration: const Duration(seconds: 5),
-            toastBuilder: (cancelFunc) {
-              return NotificationWidget(
-                title: "New Message",
-                description: "Go to your request to see the message",
-                onClick: () {
-                  cancelFunc();
-                  GoRouter.of(navKey.currentContext!).push(
-                    NavigationEnums.chatScreen.routeName,
-                    extra: caseWithMessage.id.toString(),
-                  );
-                },
-              );
-            },
-          );
-          timer.cancel();
-        }
+
+        var sumOfUnreadMessages = cases.fold<int>(
+          0,
+          (previousValue, element) {
+            return previousValue + (element.unreadMessageCount ?? 0);
+          },
+        );
+
+        state.whenData(
+          (value) {
+            if (value != sumOfUnreadMessages) {
+              if (caseWithMessage != null) {
+                BotToast.showCustomNotification(
+                  duration: const Duration(seconds: 5),
+                  toastBuilder: (cancelFunc) {
+                    return NotificationWidget(
+                      title: "New Message",
+                      description: "Go to your request to see the message",
+                      onClick: () {
+                        cancelFunc();
+                        GoRouter.of(navKey.currentContext!).push(
+                          NavigationEnums.chatScreen.routeName,
+                          extra: caseWithMessage.id.toString(),
+                        );
+                      },
+                    );
+                  },
+                );
+              }
+              state = AsyncData(sumOfUnreadMessages);
+            }
+          },
+        );
       },
     );
 
-    return false;
+    return 0;
   }
 }
 
-final newMessageProvider = AsyncNotifierProvider<NewMessageProvider, bool>(NewMessageProvider.new);
+final newMessageProvider = AsyncNotifierProvider<NewMessageProvider, int>(NewMessageProvider.new);
