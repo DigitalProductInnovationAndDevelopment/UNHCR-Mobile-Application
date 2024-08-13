@@ -23,7 +23,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        flutter pub get
+        cd my_case; flutter pub get
 
     - name: Run linting
       run: |
