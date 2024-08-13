@@ -31,7 +31,8 @@ jobs:
 
     - name: Build Flutter app
       run: |
-        flutter build apk --release  # Adjust for other build targets if needed
+        cd my_case; 
+        flutter build apk --release
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
