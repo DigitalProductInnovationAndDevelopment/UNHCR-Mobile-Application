@@ -1,4 +1,3 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -8,7 +7,6 @@ import 'package:my_case/core/design_system/components/c_skeleton.dart';
 import 'package:my_case/core/design_system/theme/c_colors.dart';
 import 'package:my_case/core/extensions/text_theme_extensions.dart';
 import 'package:my_case/features/localization/strings.g.dart';
-import 'package:my_case/features/notification/widgets/notification_widget.dart';
 import 'package:my_case/features/requests/requests_notifier.dart';
 import 'package:my_case/features/requests/widget/request_list_tile.dart';
 
